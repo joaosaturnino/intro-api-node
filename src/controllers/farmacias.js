@@ -1,7 +1,7 @@
 const db = require('../dataBase/connection');
 
 module.exports = {
-  async listarFamacias(request, response) {
+  async listarFarmacias(request, response) {
     try {
       return response.status(200).json({
         sucesso: true,
