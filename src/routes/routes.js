@@ -5,8 +5,27 @@ const FarmaciasController = require('../controllers/farmacias');
 const PromocoesController = require('../controllers/promocoes');
 const MedicamentosController = require('../controllers/medicamentos');
 
+
+
+
+
+// Routes para farmácias
 router.get('/farmacias', FarmaciasController.listarFarmacias);
-router.get('/promocoes', PromocoesController.listarPromocoes);
+router.post('/farmacias', FarmaciasController.cadastrarFarmacias);
+router.patch('/farmacias', FarmaciasController.editarFarmacias);
+router.delete('/farmacias', FarmaciasController.apagarFarmacias);
+
+// Routes para medicamentos
 router.get('/medicamentos', MedicamentosController.listarMedicamentos);
+router.post('/medicamentos', MedicamentosController.cadastrarMedicamentos);
+router.patch('/medicamentos', MedicamentosController.editarMedicamentos);
+router.delete('/medicamentos', MedicamentosController.apagarMedicamentos);
+
+// Routes para promoções
+router.get('/promocoes', PromocoesController.listarPromocoes);
+router.post('/promocoes', PromocoesController.cadastrarPromocoes);
+router.patch('/promocoes', PromocoesController.editarPromocoes);
+router.delete('/promocoes', PromocoesController.apagarPromocoes);
+
 
 module.exports = router;
