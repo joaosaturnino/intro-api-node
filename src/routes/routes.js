@@ -6,10 +6,10 @@ const PromocoesController = require('../controllers/promocoes');
 const MedicamentosController = require('../controllers/medicamentos');
 const FarmaceuticasController = require('../controllers/farmaceuticas');
 const FuncionariosController = require('../controllers/funcionarios');
-
-
-
-
+const AvaliacaoController = require('../controllers/avaliacao');
+const LaboratorioController = require('../controllers/laboratorio');
+const PrecoController = require('../controllers/precos');
+const UsuarioController = require('../controllers/usuarios');
 
 // Routes para farmácias
 router.get('/farmacias', FarmaciasController.listarFarmacias);
@@ -41,5 +41,28 @@ router.post('/funcionario', FuncionariosController.cadastrarFuncionario);
 router.patch('/funcionario', FuncionariosController.editarFuncionario);
 router.delete('/funcionario', FuncionariosController.apagarFuncionario);
 
+// Routes para avaliacao
+router.get('/avaliacao', AvaliacaoController.listarAvaliacao);
+router.post('/avaliacao', AvaliacaoController.cadastrarAvaliacao);
+router.patch('/avaliacao', AvaliacaoController.editarAvaliacao);
+router.delete('/avaliacao', AvaliacaoController.apagarAvaliacao);
+
+// Routes para laboratorio
+router.get('/laboratorio', LaboratorioController.listarLaboratorio);
+router.post('/laboratorio', LaboratorioController.cadastrarLaboratorio);
+router.patch('/laboratorio', LaboratorioController.editarLaboratorio);
+router.delete('/laboratorio', LaboratorioController.apagarLaboratorio);
+
+// Routes para precos
+router.get('/precos', PrecoController.listarPreco);
+router.post('/precos', PrecoController.cadastrarPreco);
+router.patch('/precos', PrecoController.editarPreco);
+router.delete('/precos', PrecoController.apagarPreco);
+
+// Routes para usuario
+router.get('/usuarios', UsuarioController.listarUsuario);
+router.post('/usuarios', UsuarioController.cadastrarUsuario);
+router.patch('/usuarios', UsuarioController.editarUsuario);
+router.delete('/usuarios', UsuarioController.apagarUsuario);
 
 module.exports = router;
