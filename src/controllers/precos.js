@@ -1,6 +1,7 @@
 const db = require('../dataBase/connection');
 
 module.exports = {
+  // Listar todos os preços
   async listarPreco(request, response) {
     try {
       return response.status(200).json({
@@ -16,6 +17,7 @@ module.exports = {
       });
     }
   },
+  // Cadastrar preços
   async cadastrarPreco(request, response) {
     try {
       return response.status(200).json({
@@ -31,6 +33,7 @@ module.exports = {
       });
     }
   },
+  // Editar preços
   async editarPreco(request, response) {
     try {
       return response.status(200).json({
@@ -46,6 +49,7 @@ module.exports = {
       })
     }
   },
+  // Apagar preços
   async apagarPreco(request, response) {
     try {
       return response.status(200).json({

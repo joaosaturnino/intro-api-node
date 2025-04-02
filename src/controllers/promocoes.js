@@ -1,6 +1,7 @@
 const db = require('../dataBase/connection');
 
 module.exports = {
+  // Listar todas as promoções
   async listarPromocoes(request, response) {
     try {
       return response.status(200).json({
@@ -16,6 +17,7 @@ module.exports = {
       });
     }
   },
+  // Cadastrar uma nova promoção
   async cadastrarPromocoes(request, response) {
     try {
       return response.status(200).json({
@@ -31,6 +33,7 @@ module.exports = {
       });
     }
   },
+  // Editar uma promoção existente
   async editarPromocoes(request, response) {
     try {
       return response.status(200).json({
@@ -46,6 +49,7 @@ module.exports = {
       })
     }
   },
+  // Apagar uma promoção
   async apagarPromocoes(request, response) {
     try {
       return response.status(200).json({

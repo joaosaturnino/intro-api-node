@@ -1,6 +1,7 @@
 const db = require('../dataBase/connection');
 
 module.exports = {
+  // Listar farmácias
   async listarFarmacias(request, response) {
     try {
       return response.status(200).json({
@@ -31,6 +32,7 @@ module.exports = {
       });
     }
   },
+  // Editar farmácias
   async editarFarmacias(request, response) {
     try {
       return response.status(200).json({
@@ -46,6 +48,7 @@ module.exports = {
       })
     }
   },
+  // Apagar farmácias
   async apagarFarmacias(request, response) {
     try {
       return response.status(200).json({
