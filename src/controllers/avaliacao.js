@@ -1,6 +1,7 @@
 const db = require('../dataBase/connection');
 
 module.exports = {
+
   // Listar Avaliações
   async listarAvaliacao(request, response) {
     try {
@@ -17,6 +18,7 @@ module.exports = {
       });
     }
   },
+
   // Cadastrar Avaliações
   async cadastrarAvaliacao(request, response) {
     try {
@@ -33,6 +35,7 @@ module.exports = {
       });
     }
   },
+
   // Editar Avaliações
   async editarAvaliacao(request, response) {
     try {
@@ -49,6 +52,7 @@ module.exports = {
       })
     }
   },
+
   // Apagar Avaliações
   async apagarAvaliacao(request, response) {
     try {
@@ -65,8 +69,4 @@ module.exports = {
       })
     }
   },
-
-  
-
-  
 }

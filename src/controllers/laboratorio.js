@@ -1,6 +1,7 @@
 const db = require('../dataBase/connection');
 
 module.exports = {
+
   // Listar Laboratório
   async listarLaboratorio(request, response) {
     try {
@@ -17,6 +18,7 @@ module.exports = {
       });
     }
   },
+
   // Cadastrar Laboratório
   async cadastrarLaboratorio(request, response) {
     try {
@@ -33,6 +35,7 @@ module.exports = {
       });
     }
   },
+
   // Editar Laboratório
   async editarLaboratorio(request, response) {
     try {
@@ -49,6 +52,7 @@ module.exports = {
       })
     }
   },
+
   // Apagar Laboratório
   async apagarLaboratorio(request, response) {
     try {
@@ -65,8 +69,4 @@ module.exports = {
       })
     }
   },
-
-  
-
-  
 }

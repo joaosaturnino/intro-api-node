@@ -1,6 +1,7 @@
 const db = require('../dataBase/connection');
 
 module.exports = {
+
   // Listar todos os medicamentos
   async listarMedicamentos(request, response) {
     try {
@@ -17,6 +18,7 @@ module.exports = {
       });
     }
   },
+
   // Cadastrar medicamentos
   async cadastrarMedicamentos(request, response) {
     try {
@@ -33,6 +35,7 @@ module.exports = {
       });
     }
   },
+
   // Editar medicamentos
   async editarMedicamentos(request, response) {
     try {
@@ -49,6 +52,7 @@ module.exports = {
       })
     }
   },
+  
   // Apagar medicamentos
   async apagarMedicamentos(request, response) {
     try {

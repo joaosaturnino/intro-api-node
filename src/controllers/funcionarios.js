@@ -1,6 +1,7 @@
 const db = require('../dataBase/connection');
 
 module.exports = {
+
   // Listar funcionarios
   async listarFuncionario(request, response) {
     try {
@@ -17,6 +18,7 @@ module.exports = {
       });
     }
   },
+
   // Cadastrar funcionarios
   async cadastrarFuncionario(request, response) {
     try {
@@ -33,6 +35,7 @@ module.exports = {
       });
     }
   },
+
   // Editar funcionarios
   async editarFuncionario(request, response) {
     try {
@@ -49,6 +52,7 @@ module.exports = {
       })
     }
   },
+
   // Apagar funcionarios
   async apagarFuncionario(request, response) {
     try {
@@ -65,8 +69,4 @@ module.exports = {
       })
     }
   },
-
-  
-
-  
 }

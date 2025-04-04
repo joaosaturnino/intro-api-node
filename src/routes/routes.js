@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+// Importando os controllers
 const FarmaciasController = require('../controllers/farmacias');
 const PromocoesController = require('../controllers/promocoes');
 const MedicamentosController = require('../controllers/medicamentos');

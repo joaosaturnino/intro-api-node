@@ -1,6 +1,7 @@
 const db = require('../dataBase/connection');
 
 module.exports = {
+
   // Listar todas as formas farmaceuticas
   async listarFarmaceutica(request, response) {
     try {
@@ -17,6 +18,7 @@ module.exports = {
       });
     }
   },
+
   // Cadastrar uma nova forma farmaceutica
   async cadastrarFarmaceutica(request, response) {
     try {
@@ -33,6 +35,7 @@ module.exports = {
       });
     }
   },
+
   // Editar uma forma farmaceutica
   async editarFarmaceutica(request, response) {
     try {
@@ -49,6 +52,7 @@ module.exports = {
       })
     }
   },
+
   // Apagar uma forma farmaceutica
   async apagarFarmaceutica(request, response) {
     try {
@@ -64,9 +68,5 @@ module.exports = {
         dados: error.mensage
       })
     }
-  },
-
-  
-
-  
+  }, 
 }
