@@ -1,6 +1,7 @@
 const db = require('../dataBase/connection');
 
 module.exports = {
+
   // Listar todos os usuários
   async listarUsuario(request, response) {
     try {
@@ -17,6 +18,7 @@ module.exports = {
       });
     }
   },
+
   // Cadastrar um novo usuário
   async cadastrarUsuario(request, response) {
     try {
@@ -33,6 +35,7 @@ module.exports = {
       });
     }
   },
+
   // Editar um usuário existente
   async editarUsuario(request, response) {
     try {
@@ -49,6 +52,7 @@ module.exports = {
       })
     }
   },
+  
   // Apagar um usuário existente
   async apagarUsuario(request, response) {
     try {

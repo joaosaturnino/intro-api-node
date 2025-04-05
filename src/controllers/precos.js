@@ -1,6 +1,7 @@
 const db = require('../dataBase/connection');
 
 module.exports = {
+
   // Listar todos os preços
   async listarPreco(request, response) {
     try {
@@ -17,6 +18,7 @@ module.exports = {
       });
     }
   },
+
   // Cadastrar preços
   async cadastrarPreco(request, response) {
     try {
@@ -33,6 +35,7 @@ module.exports = {
       });
     }
   },
+
   // Editar preços
   async editarPreco(request, response) {
     try {
@@ -49,6 +52,7 @@ module.exports = {
       })
     }
   },
+
   // Apagar preços
   async apagarPreco(request, response) {
     try {
@@ -65,8 +69,4 @@ module.exports = {
       })
     }
   },
-
-  
-
-  
 }
