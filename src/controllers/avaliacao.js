@@ -7,7 +7,7 @@ module.exports = {
     try {
       return response.status(200).json({
         sucesso: true,
-        mensagem: 'Lista de Avaliações.',
+        mensagem: 'Lista de Avaliações para.',
         dados: null
       });
     }catch (error) {
