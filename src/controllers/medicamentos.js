@@ -4,6 +4,7 @@ module.exports = {
 
   // Listar todos os medicamentos
   async listarMedicamentos(request, response) {
+    
     try {
       return response.status(200).json({
         sucesso: true,
