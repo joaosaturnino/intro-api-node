@@ -5,6 +5,13 @@ module.exports = {
   // Listar funcionarios
   async listarFuncionario(request, response) {
     try {
+      const sql = 'SELECT * FROM funcionarios0';
+      const funcionarios = await db.query(sql);
+
+      return response.status(200).json({
+        confirma: 'Sucesso, nResults: funcionarios[0].length',
+        message: farmacias[0]
+      });
       return response.status(200).json({
         sucesso: true,
         mensagem: 'Lista de Funcionarios.',
