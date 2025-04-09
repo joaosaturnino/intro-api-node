@@ -9,7 +9,10 @@ module.exports = {
       const sql = 'SELECT * FROM medicamentos';
       const medicamentos = await db.query(sql);
 
-      return response.status(200).json({confirma: 'Sucesso, nResults: medicamentos[0].length', message: medicamentos[0]});
+      return response.status(200).json({
+        confirma: 'Sucesso, nResults: medicamentos[0].length', 
+        message: medicamentos[0]});
+      
       return response.status(200).json({
         sucesso: true,
         mensagem: 'Lista de Medicamentos.',
