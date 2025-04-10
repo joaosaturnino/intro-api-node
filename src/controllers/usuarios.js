@@ -5,6 +5,13 @@ module.exports = {
   // Listar todos os usuários
   async listarUsuario(request, response) {
     try {
+      const sql = 'SELECT * FROM usuarios';
+      const usuarios = await db.query(sql);
+
+      return response.status(200).json({
+        confirma: 'Sucesso, nResults: usuarios[0].length',
+        message: usuarios[0]
+      });
       return response.status(200).json({
         sucesso: true,
         mensagem: 'Lista de Usuários.',

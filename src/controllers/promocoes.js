@@ -5,6 +5,13 @@ module.exports = {
   // Listar todas as promoções
   async listarPromocoes(request, response) {
     try {
+      const sql = 'SELECT * FROM promocoes';
+      const promocoes = await db.query(sql);
+
+      return response.status(200).json({
+        confirma: 'Sucesso, nResults: promocoes[0].length',
+        message: promocoes[0]
+      });
       return response.status(200).json({
         sucesso: true,
         mensagem: 'Lista de Promocoes.',

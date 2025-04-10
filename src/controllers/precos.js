@@ -5,6 +5,13 @@ module.exports = {
   // Listar todos os preços
   async listarPreco(request, response) {
     try {
+      const sql = 'SELECT * FROM precos';
+      const precos = await db.query(sql);
+
+      return response.status(200).json({
+        confirma: 'Sucesso, nResults: precos[0].length',
+        message: precos[0]
+      });
       return response.status(200).json({
         sucesso: true,
         mensagem: 'Lista de Preços.',
