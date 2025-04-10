@@ -5,7 +5,7 @@ module.exports = {
   // Listar Avaliações
   async listarAvaliacao(request, response) {
     try {
-      const sql = 'SELECT * FROM avaliacoes';
+      const sql = 'SELECT avaliacoesSELECT ava_id, usu_id, far_id, nota, ava_comentario FROM avaliacoes';
       const avaliacoes = await db.query(sql);
 
       return response.status(200).json({

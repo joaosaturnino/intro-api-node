@@ -6,7 +6,7 @@ module.exports = {
   async listarMedicamentos(request, response) {
     
     try {
-      const sql = 'SELECT * FROM medicamentos';
+      const sql = 'SELECT med_id, med_nome, med_dosagem, med_quantidade, tipo_produto, forma_id, descricao, lab_id, med_img FROM medicamentos';
       const medicamentos = await db.query(sql);
 
       return response.status(200).json({
