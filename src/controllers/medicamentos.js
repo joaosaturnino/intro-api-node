@@ -4,15 +4,19 @@ module.exports = {
 
   // Listar todos os medicamentos
   async listarMedicamentos(request, response) {
-    
+
     try {
-      const sql = 'SELECT med_id, med_nome, med_dosagem, med_quantidade, tipo_produto, forma_id, descricao, lab_id, med_img FROM medicamentos';
-      const medicamentos = await db.query(sql);
+      const sql = 'SELECT med_id, med_nome, med_dosagem, med_quantidade, tipo_produto, forma_id, descricao, lab_id, med_img FROM medicamentos;';
+
+      const [rows] = await db.query(sql);
 
       return response.status(200).json({
-        confirma: 'Sucesso, nResults: medicamentos[0].length', 
-        message: medicamentos[0]});
-      
+        sucesso: true,
+        mensagem: 'Lista de medicamentos',
+        itens: rows.length,
+        dados: rows
+      });
+
       return response.status(200).json({
         sucesso: true,
         mensagem: 'Lista de Medicamentos.',
@@ -60,7 +64,7 @@ module.exports = {
       })
     }
   },
-  
+
   // Apagar medicamentos
   async apagarMedicamentos(request, response) {
     try {
