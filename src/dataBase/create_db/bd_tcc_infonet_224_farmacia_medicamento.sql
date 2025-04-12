@@ -16,34 +16,42 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usuarios`
+-- Table structure for table `medicamento`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
+DROP TABLE IF EXISTS `medicamento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usuarios` (
-  `usu_id` int(11) NOT NULL AUTO_INCREMENT,
-  `usu_nome` varchar(80) NOT NULL,
-  `usu_email` varchar(100) NOT NULL,
-  `usu_senha` varchar(48) NOT NULL,
-  `usu_cpf` char(11) DEFAULT NULL,
-  `usu_tipo` tinyint(4) DEFAULT NULL,
-  `cid_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`usu_id`),
-  UNIQUE KEY `usu_cpf` (`usu_cpf`),
-  KEY `cid_id` (`cid_id`),
-  CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`cid_id`) REFERENCES `cidade` (`cidade_id`)
+CREATE TABLE `medicamento` (
+  `med_id` int(11) NOT NULL AUTO_INCREMENT,
+  `med_nome` varchar(60) NOT NULL,
+  `med_dosagem` varchar(10) NOT NULL,
+  `med_quantidade` varchar(10) NOT NULL,
+  `forma_id` int(11) NOT NULL,
+  `descricao` varchar(250) DEFAULT NULL,
+  `lab_id` int(11) NOT NULL,
+  `med_img` varchar(255) DEFAULT NULL,
+  `farmacia_id` int(11) DEFAULT NULL,
+  `tipo_id` int(11) NOT NULL,
+  PRIMARY KEY (`med_id`),
+  KEY `forma_id` (`forma_id`),
+  KEY `lab_id` (`lab_id`),
+  KEY `farmacia_id` (`farmacia_id`),
+  KEY `tipo_id` (`tipo_id`),
+  CONSTRAINT `medicamento_ibfk_1` FOREIGN KEY (`forma_id`) REFERENCES `forma_farmaceutica` (`forma_id`),
+  CONSTRAINT `medicamento_ibfk_2` FOREIGN KEY (`lab_id`) REFERENCES `laboratorio` (`lab_id`),
+  CONSTRAINT `medicamento_ibfk_3` FOREIGN KEY (`farmacia_id`) REFERENCES `farmacia` (`farm_id`),
+  CONSTRAINT `medicamento_ibfk_4` FOREIGN KEY (`tipo_id`) REFERENCES `tipo_produto` (`tipo_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuarios`
+-- Dumping data for table `medicamento`
 --
 
-LOCK TABLES `usuarios` WRITE;
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+LOCK TABLES `medicamento` WRITE;
+/*!40000 ALTER TABLE `medicamento` DISABLE KEYS */;
+/*!40000 ALTER TABLE `medicamento` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-11 22:10:23
+-- Dump completed on 2025-04-11 22:10:22

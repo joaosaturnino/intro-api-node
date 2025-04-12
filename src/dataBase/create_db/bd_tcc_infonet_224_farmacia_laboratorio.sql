@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: 10.67.22.216    Database: bd_tcc_infonet_224_farmacia
 -- ------------------------------------------------------
@@ -16,33 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `precos`
+-- Table structure for table `laboratorio`
 --
 
-DROP TABLE IF EXISTS `precos`;
+DROP TABLE IF EXISTS `laboratorio`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `precos` (
-  `pre_id` int(11) NOT NULL AUTO_INCREMENT,
-  `med_id` int(11) NOT NULL,
-  `farm_id` int(11) NOT NULL,
-  `preco` decimal(10,2) NOT NULL,
-  `ativo` bit(1) DEFAULT NULL,
-  PRIMARY KEY (`pre_id`),
-  KEY `med_id` (`med_id`),
-  KEY `farm_id` (`farm_id`),
-  CONSTRAINT `precos_ibfk_1` FOREIGN KEY (`med_id`) REFERENCES `medicamentos` (`med_id`),
-  CONSTRAINT `precos_ibfk_2` FOREIGN KEY (`farm_id`) REFERENCES `farmacias` (`farm_id`)
+CREATE TABLE `laboratorio` (
+  `lab_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome_laboratorio` varchar(60) NOT NULL,
+  `lab_cnpj` char(14) NOT NULL,
+  PRIMARY KEY (`lab_id`),
+  UNIQUE KEY `lab_cnpj` (`lab_cnpj`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `precos`
+-- Dumping data for table `laboratorio`
 --
 
-LOCK TABLES `precos` WRITE;
-/*!40000 ALTER TABLE `precos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `precos` ENABLE KEYS */;
+LOCK TABLES `laboratorio` WRITE;
+/*!40000 ALTER TABLE `laboratorio` DISABLE KEYS */;
+/*!40000 ALTER TABLE `laboratorio` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-21 19:52:17
+-- Dump completed on 2025-04-11 22:10:22

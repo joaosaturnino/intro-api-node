@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: 10.67.22.216    Database: bd_tcc_infonet_224_farmacia
 -- ------------------------------------------------------
@@ -16,33 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `avaliacoes`
+-- Table structure for table `medpreco`
 --
 
-DROP TABLE IF EXISTS `avaliacoes`;
+DROP TABLE IF EXISTS `medpreco`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `avaliacoes` (
-  `ava_id` int(11) NOT NULL AUTO_INCREMENT,
-  `usu_id` int(11) NOT NULL,
-  `far_id` int(11) NOT NULL,
-  `nota` tinyint(4) DEFAULT NULL,
-  `ava_comentario` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`ava_id`),
-  KEY `usu_id` (`usu_id`),
-  KEY `far_id` (`far_id`),
-  CONSTRAINT `avaliacoes_ibfk_1` FOREIGN KEY (`usu_id`) REFERENCES `usuarios` (`usu_id`),
-  CONSTRAINT `avaliacoes_ibfk_2` FOREIGN KEY (`far_id`) REFERENCES `farmacias` (`farm_id`)
+CREATE TABLE `medpreco` (
+  `medpreco_id` int(11) NOT NULL AUTO_INCREMENT,
+  `farmacia_id` int(11) NOT NULL,
+  `med_id` int(11) NOT NULL,
+  PRIMARY KEY (`medpreco_id`),
+  KEY `farmacia_id` (`farmacia_id`),
+  KEY `med_id` (`med_id`),
+  CONSTRAINT `medpreco_ibfk_1` FOREIGN KEY (`farmacia_id`) REFERENCES `farmacia` (`farm_id`),
+  CONSTRAINT `medpreco_ibfk_2` FOREIGN KEY (`med_id`) REFERENCES `medicamento` (`med_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `avaliacoes`
+-- Dumping data for table `medpreco`
 --
 
-LOCK TABLES `avaliacoes` WRITE;
-/*!40000 ALTER TABLE `avaliacoes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `avaliacoes` ENABLE KEYS */;
+LOCK TABLES `medpreco` WRITE;
+/*!40000 ALTER TABLE `medpreco` DISABLE KEYS */;
+/*!40000 ALTER TABLE `medpreco` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-21 19:52:17
+-- Dump completed on 2025-04-11 22:10:23

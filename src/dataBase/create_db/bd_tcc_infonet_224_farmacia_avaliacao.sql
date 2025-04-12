@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: 10.67.22.216    Database: bd_tcc_infonet_224_farmacia
 -- ------------------------------------------------------
@@ -16,35 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `farmacias`
+-- Table structure for table `avaliacao`
 --
 
-DROP TABLE IF EXISTS `farmacias`;
+DROP TABLE IF EXISTS `avaliacao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `farmacias` (
-  `farm_id` int(11) NOT NULL AUTO_INCREMENT,
-  `farm_nome` varchar(50) NOT NULL,
-  `farm_endereco` varchar(200) NOT NULL,
-  `farm_telefone` varchar(15) DEFAULT NULL,
-  `farm_email` varchar(80) NOT NULL,
-  `cnpj` char(14) NOT NULL,
-  `farm_logo` varchar(255) NOT NULL,
-  `func_id` int(11) NOT NULL,
-  PRIMARY KEY (`farm_id`),
-  UNIQUE KEY `cnpj` (`cnpj`),
-  KEY `func_id` (`func_id`),
-  CONSTRAINT `farmacias_ibfk_1` FOREIGN KEY (`func_id`) REFERENCES `funcionarios` (`func_id`)
+CREATE TABLE `avaliacao` (
+  `ava_id` int(11) NOT NULL AUTO_INCREMENT,
+  `usu_id` int(11) NOT NULL,
+  `far_id` int(11) NOT NULL,
+  `nota` tinyint(4) DEFAULT NULL,
+  `ava_comentario` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ava_id`),
+  KEY `usu_id` (`usu_id`),
+  KEY `far_id` (`far_id`),
+  CONSTRAINT `avaliacao_ibfk_1` FOREIGN KEY (`usu_id`) REFERENCES `usuarios` (`usu_id`),
+  CONSTRAINT `avaliacao_ibfk_2` FOREIGN KEY (`far_id`) REFERENCES `farmacia` (`farm_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `farmacias`
+-- Dumping data for table `avaliacao`
 --
 
-LOCK TABLES `farmacias` WRITE;
-/*!40000 ALTER TABLE `farmacias` DISABLE KEYS */;
-/*!40000 ALTER TABLE `farmacias` ENABLE KEYS */;
+LOCK TABLES `avaliacao` WRITE;
+/*!40000 ALTER TABLE `avaliacao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `avaliacao` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-21 19:52:17
+-- Dump completed on 2025-04-11 22:10:23

@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: 10.67.22.216    Database: bd_tcc_infonet_224_farmacia
 -- ------------------------------------------------------
@@ -16,39 +16,26 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `medicamentos`
+-- Table structure for table `forma_farmaceutica`
 --
 
-DROP TABLE IF EXISTS `medicamentos`;
+DROP TABLE IF EXISTS `forma_farmaceutica`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `medicamentos` (
-  `med_id` int(11) NOT NULL AUTO_INCREMENT,
-  `med_nome` varchar(60) NOT NULL,
-  `med_ean` varchar(15) NOT NULL,
-  `med_prescricao` varchar(15) NOT NULL,
-  `med_dosagem` varchar(10) NOT NULL,
-  `med_quantidade` varchar(10) NOT NULL,
-  `med_tarja` varchar(15) NOT NULL,
-  `tipo_produto` varchar(15) NOT NULL,
-  `principio_ativo` varchar(50) NOT NULL,
-  `forma_id` int(11) NOT NULL,
-  `lab_id` int(11) NOT NULL,
-  PRIMARY KEY (`med_id`),
-  KEY `forma_id` (`forma_id`),
-  KEY `lab_id` (`lab_id`),
-  CONSTRAINT `medicamentos_ibfk_1` FOREIGN KEY (`forma_id`) REFERENCES `formasfarmaceuticas` (`forma_id`),
-  CONSTRAINT `medicamentos_ibfk_2` FOREIGN KEY (`lab_id`) REFERENCES `laboratorios` (`lab_id`)
+CREATE TABLE `forma_farmaceutica` (
+  `forma_id` int(11) NOT NULL AUTO_INCREMENT,
+  `forma_nome` varchar(50) NOT NULL,
+  PRIMARY KEY (`forma_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `medicamentos`
+-- Dumping data for table `forma_farmaceutica`
 --
 
-LOCK TABLES `medicamentos` WRITE;
-/*!40000 ALTER TABLE `medicamentos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `medicamentos` ENABLE KEYS */;
+LOCK TABLES `forma_farmaceutica` WRITE;
+/*!40000 ALTER TABLE `forma_farmaceutica` DISABLE KEYS */;
+/*!40000 ALTER TABLE `forma_farmaceutica` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -60,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-21 19:52:17
+-- Dump completed on 2025-04-11 22:10:21

@@ -5,17 +5,15 @@ module.exports = {
   // Listar Laboratório
   async listarLaboratorio(request, response) {
     try {
-      const sql = 'SELECT * FROM laboratorios';
-      const laboratorios = await db.query(sql);
+      const sql = 'SELECT lab_id, nome_laboratorio, lab_cnpj FROM laboratorio;';
+
+      const [rows] = await db.query(sql);
 
       return response.status(200).json({
-        confirma: 'Sucesso, nResults: laboratorios[0].length',
-        message: laboratorios[0]
-      })
-      return response.status(200).json({
         sucesso: true,
-        mensagem: 'Lista de Laboratórios.',
-        dados: null
+        mensagem: 'Lista de laboratorios',
+        itens: rows.length,
+        dados: rows
       });
     }catch (error) {
       return response.status(500).json({

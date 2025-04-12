@@ -5,20 +5,15 @@ module.exports = {
   // Listar todas as promoções
   async listarPromocoes(request, response) {
     try {
-      const sql = 'SELECT promo_id, farm_id, med_id, promo_desconto, promo_inicio, promo_fim FROM promocoes;';
+      const sql = 'SELECT promo_id, farm_id, med_id, promo_desconto, promo_inicio, promo_fim FROM promocao;';
 
       const [rows] = await db.query(sql);
 
       return response.status(200).json({
         sucesso: true,
-        mensagem: 'Lista de Promoçoes',
+        mensagem: 'Lista de promoções',
         itens: rows.length,
         dados: rows
-      });
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Lista de Promocoes.',
-        dados: null
       });
     }catch (error) {
       return response.status(500).json({

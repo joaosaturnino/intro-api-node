@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: 10.67.22.216    Database: bd_tcc_infonet_224_farmacia
 -- ------------------------------------------------------
@@ -16,26 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `formasfarmaceuticas`
+-- Table structure for table `cidade`
 --
 
-DROP TABLE IF EXISTS `formasfarmaceuticas`;
+DROP TABLE IF EXISTS `cidade`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `formasfarmaceuticas` (
-  `forma_id` int(11) NOT NULL AUTO_INCREMENT,
-  `forma_nome` varchar(50) NOT NULL,
-  PRIMARY KEY (`forma_id`)
+CREATE TABLE `cidade` (
+  `cidade_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome_cidade` varchar(50) NOT NULL,
+  `nome_estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cidade_id`),
+  KEY `nome_estado` (`nome_estado`),
+  CONSTRAINT `cidade_ibfk_1` FOREIGN KEY (`nome_estado`) REFERENCES `estado` (`estado_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `formasfarmaceuticas`
+-- Dumping data for table `cidade`
 --
 
-LOCK TABLES `formasfarmaceuticas` WRITE;
-/*!40000 ALTER TABLE `formasfarmaceuticas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `formasfarmaceuticas` ENABLE KEYS */;
+LOCK TABLES `cidade` WRITE;
+/*!40000 ALTER TABLE `cidade` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cidade` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -47,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-21 19:52:16
+-- Dump completed on 2025-04-11 22:10:21

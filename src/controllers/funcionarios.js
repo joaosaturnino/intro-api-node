@@ -5,17 +5,15 @@ module.exports = {
   // Listar funcionarios
   async listarFuncionario(request, response) {
     try {
-      const sql = 'SELECT * FROM funcionarios';
-      const funcionarios = await db.query(sql);
+      const sql = 'SELECT func_id, cargo, usu_id FROM funcionarios;';
+
+      const [rows] = await db.query(sql);
 
       return response.status(200).json({
-        confirma: 'Sucesso, nResults: funcionarios[0].length',
-        message: funcionarios[0]
-      });
-      return response.status(200).json({
         sucesso: true,
-        mensagem: 'Lista de Funcionarios.',
-        dados: null
+        mensagem: 'Lista de funcionarios',
+        itens: rows.length,
+        dados: rows
       });
     }catch (error) {
       return response.status(500).json({

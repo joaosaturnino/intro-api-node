@@ -16,34 +16,39 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usuarios`
+-- Table structure for table `farmacia`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
+DROP TABLE IF EXISTS `farmacia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usuarios` (
-  `usu_id` int(11) NOT NULL AUTO_INCREMENT,
-  `usu_nome` varchar(80) NOT NULL,
-  `usu_email` varchar(100) NOT NULL,
-  `usu_senha` varchar(48) NOT NULL,
-  `usu_cpf` char(11) DEFAULT NULL,
-  `usu_tipo` tinyint(4) DEFAULT NULL,
+CREATE TABLE `farmacia` (
+  `farm_id` int(11) NOT NULL AUTO_INCREMENT,
+  `farm_nome` varchar(50) NOT NULL,
+  `farm_endereco` varchar(200) NOT NULL,
+  `farm_telefone` varchar(15) DEFAULT NULL,
+  `farm_email` varchar(80) NOT NULL,
+  `farm_senha` varchar(48) NOT NULL,
+  `cnpj` char(14) NOT NULL,
+  `farm_logo` varchar(255) DEFAULT NULL,
+  `func_id` int(11) DEFAULT NULL,
   `cid_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`usu_id`),
-  UNIQUE KEY `usu_cpf` (`usu_cpf`),
+  PRIMARY KEY (`farm_id`),
+  UNIQUE KEY `cnpj` (`cnpj`),
+  KEY `func_id` (`func_id`),
   KEY `cid_id` (`cid_id`),
-  CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`cid_id`) REFERENCES `cidade` (`cidade_id`)
+  CONSTRAINT `farmacia_ibfk_1` FOREIGN KEY (`func_id`) REFERENCES `funcionarios` (`func_id`),
+  CONSTRAINT `farmacia_ibfk_2` FOREIGN KEY (`cid_id`) REFERENCES `cidade` (`cidade_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuarios`
+-- Dumping data for table `farmacia`
 --
 
-LOCK TABLES `usuarios` WRITE;
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+LOCK TABLES `farmacia` WRITE;
+/*!40000 ALTER TABLE `farmacia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `farmacia` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-11 22:10:23
+-- Dump completed on 2025-04-11 22:10:22

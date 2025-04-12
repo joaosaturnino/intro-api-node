@@ -5,7 +5,7 @@ module.exports = {
   // Listar farmácias
   async listarFarmacias(request, response) {
     try {
-      const sql = 'SELECT farm_id, farm_nome, farm_endereco, farm_telefone, farm_email, cnpj, farm_logo, func_id FROM farmacias;';
+      const sql = 'SELECT farm_id, farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo, func_id, cid_id FROM farmacia;';
 
       const [rows] = await db.query(sql);
 
@@ -14,11 +14,6 @@ module.exports = {
         mensagem: 'Lista de farmacias',
         itens: rows.length,
         dados: rows
-      });
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Lista de Farmacias.',
-        dados: null
       });
     }catch (error) {
       return response.status(500).json({
