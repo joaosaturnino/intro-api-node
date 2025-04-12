@@ -11,6 +11,34 @@ const AvaliacaoController = require('../controllers/avaliacao');
 const LaboratorioController = require('../controllers/laboratorio');
 const PrecoController = require('../controllers/precos');
 const UsuarioController = require('../controllers/usuarios');
+const CidadesController = require('../controllers/cidades');
+const EstadosController = require('../controllers/estados');
+const TiposProdutoController = require('../controllers/tipoproduto');
+const MedPrecoController = require('../controllers/medpreco');
+
+// Routes para tipos de produtos
+router.get('/tipoproduto', TiposProdutoController.listarTipoProduto); // Listar tipos de produtos
+router.post('/tipoproduto', TiposProdutoController.cadastrarTipoProduto); // Cadastrar tipos de produtos
+router.patch('/tipoproduto', TiposProdutoController.editarTipoProduto); // Editar tipos de produtos
+router.delete('/tipoproduto', TiposProdutoController.apagarTipoProduto); // Apagar tipos de produtos
+
+// Routes para cidades
+router.get('/cidades', CidadesController.listarCidade); // Listar cidades
+router.post('/cidades', CidadesController.cadastrarCidade); // Cadastrar cidades
+router.patch('/cidades', CidadesController.editarCidade); // Editar cidades
+router.delete('/cidades', CidadesController.apagarCidade); // Apagar cidades
+
+// Routes para estados
+router.get('/estados', EstadosController.listarEstado); // Listar estados
+router.post('/estados', EstadosController.cadastrarEstado); // Cadastrar estados
+router.patch('/estados', EstadosController.editarEstado); // Editar estados
+router.delete('/estados', EstadosController.apagarEstado); // Apagar estados
+
+// Routes para precos medicamentos
+router.get('/medpreco', MedPrecoController.listarMedPreco); // Listar precos medicamentos
+router.post('/medpreco', MedPrecoController.cadastrarMedPreco); // Cadastrar precos medicamentos
+router.patch('/medpreco', MedPrecoController.editarMedPreco); // Editar precos medicamentos
+router.delete('/medpreco', MedPrecoController.apagarMedPreco); // Apagar precos medicamentos
 
 // Routes para farmácias
 router.get('/farmacias', FarmaciasController.listarFarmacias); // Listar farmácias
