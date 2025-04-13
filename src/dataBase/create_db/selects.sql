@@ -1,7 +1,7 @@
 SELECT ava_id, usu_id, far_id, nota, ava_comentario
 FROM avaliacao; -- ok
 
-SELECT cidade_id, nome_cidade, nome_estado FROM cidade;
+SELECT cidade_id, nome_cidade, nome_estado FROM cidade; -- ok
 
 SELECT estado_id, nome_estado FROM estado;
 
