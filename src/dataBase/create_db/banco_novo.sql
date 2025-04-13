@@ -1,35 +1,31 @@
--- Estado
-CREATE TABLE estado (
-    estado_id INT AUTO_INCREMENT PRIMARY KEY,
-    nome_estado VARCHAR(25) NOT NULL
-);
+/* CREATE DATABASE IF NOT EXISTS pharmax;
+USE pharmax; */
 
 -- Cidade
 CREATE TABLE cidade (
     cidade_id INT AUTO_INCREMENT PRIMARY KEY,
     nome_cidade VARCHAR(50) NOT NULL,
-    nome_estado INT,
-    FOREIGN KEY (nome_estado) REFERENCES estado(estado_id)
-);
+    uf_sigla CHAR(2) NOT NULL
+); -- criado
 
 -- Tipo de Produto
 CREATE TABLE tipo_produto (
     tipo_id INT AUTO_INCREMENT PRIMARY KEY,
     nome_tipo VARCHAR(50) NOT NULL
-);
+); -- criado
 
 -- Forma Farmacêutica
 CREATE TABLE forma_farmaceutica (
     forma_id INT AUTO_INCREMENT PRIMARY KEY,
     forma_nome VARCHAR(50) NOT NULL
-);
+); -- criado
 
 -- Laboratório
 CREATE TABLE laboratorio (
     lab_id INT AUTO_INCREMENT PRIMARY KEY,
     nome_laboratorio VARCHAR(60) NOT NULL,
-    lab_cnpj CHAR(14) NOT NULL UNIQUE
-);
+    lab_cnpj CHAR(14)
+); -- criado
 
 -- Usuários
 CREATE TABLE usuarios (
@@ -41,7 +37,7 @@ CREATE TABLE usuarios (
     usu_tipo TINYINT CHECK (usu_tipo IN (0, 1, 2)),
     cid_id INT,
     FOREIGN KEY (cid_id) REFERENCES cidade(cidade_id)
-);
+); -- criado
 
 -- Funcionários
 CREATE TABLE funcionarios (
@@ -49,7 +45,7 @@ CREATE TABLE funcionarios (
     cargo VARCHAR(50) NOT NULL,
     usu_id INT NOT NULL,
     FOREIGN KEY (usu_id) REFERENCES usuarios(usu_id)
-);
+); -- criado
 
 -- Farmácia
 CREATE TABLE farmacia (
@@ -65,7 +61,7 @@ CREATE TABLE farmacia (
     cid_id INT,
     FOREIGN KEY (func_id) REFERENCES funcionarios(func_id),
     FOREIGN KEY (cid_id) REFERENCES cidade(cidade_id)
-);
+); -- criado
 
 -- Medicamento
 CREATE TABLE medicamento (
@@ -77,31 +73,21 @@ CREATE TABLE medicamento (
     descricao VARCHAR(250),
     lab_id INT NOT NULL,
     med_img VARCHAR(255),
-    farmacia_id INT,
     tipo_id INT NOT NULL,
     FOREIGN KEY (forma_id) REFERENCES forma_farmaceutica(forma_id),
     FOREIGN KEY (lab_id) REFERENCES laboratorio(lab_id),
-    FOREIGN KEY (farmacia_id) REFERENCES farmacia(farm_id),
     FOREIGN KEY (tipo_id) REFERENCES tipo_produto(tipo_id)
-);
+); -- criado
 
 -- Tabela Intermediária: MedPrecos
 CREATE TABLE medpreco (
     medpreco_id INT AUTO_INCREMENT PRIMARY KEY,
     farmacia_id INT NOT NULL,
     med_id INT NOT NULL,
+    preco DECIMAL(10,2) NOT NULL,
     FOREIGN KEY (farmacia_id) REFERENCES farmacia(farm_id),
     FOREIGN KEY (med_id) REFERENCES medicamento(med_id)
-);
-
--- Preço
-CREATE TABLE preco (
-    pre_id INT AUTO_INCREMENT PRIMARY KEY,
-    preco DECIMAL(10,2) NOT NULL,
-    medpreco_id INT NOT NULL,
-    ativo BOOLEAN,
-    FOREIGN KEY (medpreco_id) REFERENCES medpreco(medpreco_id)
-);
+); -- criado
 
 -- Promoção
 CREATE TABLE promocao (
@@ -125,3 +111,4 @@ CREATE TABLE avaliacao (
     FOREIGN KEY (usu_id) REFERENCES usuarios(usu_id),
     FOREIGN KEY (far_id) REFERENCES farmacia(farm_id)
 );
+

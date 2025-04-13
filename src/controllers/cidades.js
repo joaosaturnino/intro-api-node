@@ -5,7 +5,7 @@ module.exports = {
   // Listar Cidades
   async listarCidade(request, response) {
     try {
-      const sql = 'SELECT cidade_id, nome_cidade, nome_estado FROM cidade;';
+      const sql = 'SELECT cidade_id, nome_cidade, uf_sigla FROM cidade;';
 
       const [rows] = await db.query(sql);
 

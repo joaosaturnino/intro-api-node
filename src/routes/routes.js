@@ -9,10 +9,10 @@ const FarmaceuticasController = require('../controllers/farmaceuticas');
 const FuncionariosController = require('../controllers/funcionarios');
 const AvaliacaoController = require('../controllers/avaliacao');
 const LaboratorioController = require('../controllers/laboratorio');
-const PrecoController = require('../controllers/precos');
+// const PrecoController = require('../controllers/precos');
 const UsuarioController = require('../controllers/usuarios');
 const CidadesController = require('../controllers/cidades');
-const EstadosController = require('../controllers/estados');
+// const EstadosController = require('../controllers/estados');
 const TiposProdutoController = require('../controllers/tipoproduto');
 const MedPrecoController = require('../controllers/medpreco');
 
@@ -28,11 +28,11 @@ router.post('/cidades', CidadesController.cadastrarCidade); // Cadastrar cidades
 router.patch('/cidades', CidadesController.editarCidade); // Editar cidades
 router.delete('/cidades', CidadesController.apagarCidade); // Apagar cidades
 
-// Routes para estados
-router.get('/estados', EstadosController.listarEstado); // Listar estados
-router.post('/estados', EstadosController.cadastrarEstado); // Cadastrar estados
-router.patch('/estados', EstadosController.editarEstado); // Editar estados
-router.delete('/estados', EstadosController.apagarEstado); // Apagar estados
+// // Routes para estados
+// router.get('/estados', EstadosController.listarEstado); // Listar estados
+// router.post('/estados', EstadosController.cadastrarEstado); // Cadastrar estados
+// router.patch('/estados', EstadosController.editarEstado); // Editar estados
+// router.delete('/estados', EstadosController.apagarEstado); // Apagar estados
 
 // Routes para precos medicamentos
 router.get('/medpreco', MedPrecoController.listarMedPreco); // Listar precos medicamentos
@@ -82,11 +82,11 @@ router.post('/laboratorio', LaboratorioController.cadastrarLaboratorio); // Cada
 router.patch('/laboratorio', LaboratorioController.editarLaboratorio); // Editar laboratorio
 router.delete('/laboratorio', LaboratorioController.apagarLaboratorio); // Apagar laboratorio
 
-// Routes para precos
-router.get('/precos', PrecoController.listarPreco); // Listar precos
-router.post('/precos', PrecoController.cadastrarPreco); // Cadastrar precos
-router.patch('/precos', PrecoController.editarPreco); // Editar precos
-router.delete('/precos', PrecoController.apagarPreco); // Apagar precos
+// // Routes para precos
+// router.get('/precos', PrecoController.listarPreco); // Listar precos
+// router.post('/precos', PrecoController.cadastrarPreco); // Cadastrar precos
+// router.patch('/precos', PrecoController.editarPreco); // Editar precos
+// router.delete('/precos', PrecoController.apagarPreco); // Apagar precos
 
 // Routes para usuario
 router.get('/usuarios', UsuarioController.listarUsuario); // Listar usuarios

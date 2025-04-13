@@ -5,7 +5,7 @@ module.exports = {
   // Listar Preços de medicamentos
   async listarMedPreco(request, response) {
     try {
-      const sql = 'SELECT medpreco_id, farmacia_id, med_id FROM medpreco;';
+      const sql = 'SELECT medpreco_id, farmacia_id, med_id, preco FROM medpreco;';
 
       const [rows] = await db.query(sql);
 

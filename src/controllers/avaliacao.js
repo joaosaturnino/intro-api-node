@@ -27,11 +27,19 @@ module.exports = {
   // Cadastrar Avaliações
   async cadastrarAvaliacao(request, response) {
     try {
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Cadastrar Avaliações.',
-        dados: null
-      });
+      const { usu_id, far_id, nota, ava_comentario } = request.body;
+      const sql = 'INSERT INTO avaliacao (usu_id, far_id, nota, ava_comentario) VALUES (?, ?, ?, ?);';
+      const values = [usu_id, far_id, nota, ava_comentario];
+      const confirmacao = await db.query(sql, values);
+
+      const idInst = confirmacao[0].insertId;
+
+      return response.status(200).json({confirma: 'sucesso', message: idInst})
+      // return response.status(200).json({
+      //   sucesso: true,
+      //   mensagem: 'Cadastrar Avaliações.',
+      //   dados: null
+      // });
     } catch (error) {
       return response.status(500).json({
         sucesso: false,
