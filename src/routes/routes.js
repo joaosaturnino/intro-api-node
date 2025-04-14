@@ -73,7 +73,7 @@ router.delete('/funcionario', FuncionariosController.apagarFuncionario); // Apag
 // Routes para avaliacao
 router.get('/avaliacao', AvaliacaoController.listarAvaliacao); // Listar avaliacao
 router.post('/avaliacao', AvaliacaoController.cadastrarAvaliacao); // Cadastrar avaliacao
-router.patch('/avaliacao', AvaliacaoController.editarAvaliacao); // Editar avaliacao
+router.patch('/avaliacao/', AvaliacaoController.editarAvaliacao); // Editar avaliacao
 router.delete('/avaliacao', AvaliacaoController.apagarAvaliacao); // Apagar avaliacao
 
 // Routes para laboratorio
