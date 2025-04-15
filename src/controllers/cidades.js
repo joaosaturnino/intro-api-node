@@ -27,11 +27,14 @@ module.exports = {
   // Cadastrar Cidades
   async cadastrarCidade(request, response) {
     try {
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Cadastrar Cidades.',
-        dados: null
-      });
+     const { nome_cidade, uf_sigla } = request.body;
+     const sql = 'INSERT INTO cidade (nome_cidade, uf_sigla) VALUES (?, ?);';
+     const values = [nome_cidade, uf_sigla];
+     const confirmacao = await db.query(sql, values);
+
+     const idInst = confirmacao[0].insertId;
+
+     return response.status(200).json({confirmacao: 'sucesso', message: idInst})
     } catch (error) {
       return response.status(500).json({
         sucesso: false,
