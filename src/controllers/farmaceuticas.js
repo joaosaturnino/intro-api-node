@@ -27,11 +27,15 @@ module.exports = {
   // Cadastrar uma nova forma farmaceutica
   async cadastrarFarmaceutica(request, response) {
     try {
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Cadastrar Formas farmaceuticas.',
-        dados: null
-      });
+      const { forma_nome } = request.body;
+      const sql = 'INSERT INTO forma_farmaceutica (forma_nome) VALUES (?);';
+      const values = [forma_nome];
+      const confirmacao = await db.query(sql, values);
+
+      const idInst = confirmacao[0].insertId;
+
+      return response.status(200).json({confirmacao: 'sucesso', message: idInst})
+    
     } catch (error) {
       return response.status(500).json({
         sucesso: false,
