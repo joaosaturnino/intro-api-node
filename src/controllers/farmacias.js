@@ -27,11 +27,9 @@ module.exports = {
   // Cadastrar farmácias
   async cadastrarFarmacias(request, response) {
     try {
-      const { farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, func_id, cid_id } = request.body;
-      // const salt = bcrypt.genSaltSync(10);
-      // const hash = bcrypt.hashSync(farm_senha, salt);
-      const sql = 'INSERT INTO farmacia (farm_nome, farm_endereco, farm_telefone, farma_email, farma_senha, cnpj, func_id, cid_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
-      const values = [farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, func_id, cid_id];
+      const { farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo, func_id, cid_id} = request.body;
+      const sql = 'INSERT INTO farmacia (farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo, func_id, cid_id) VALUES (?, ?, ?, ?, ?, ?);';
+      const values = [farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo, func_id, cid_id];
       const confirmacao = await db.query(sql, values);
 
       const idInst = confirmacao[0].insertId;
