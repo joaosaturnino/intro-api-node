@@ -25,8 +25,8 @@ router.delete('/tipoproduto', TiposProdutoController.apagarTipoProduto); // Apag
 // Routes para cidades
 router.get('/cidades', CidadesController.listarCidade); // Listar cidades
 router.post('/cidades', CidadesController.cadastrarCidade); // Cadastrar cidades
-router.patch('/cidades', CidadesController.editarCidade); // Editar cidades
-router.delete('/cidades', CidadesController.apagarCidade); // Apagar cidades
+router.patch('/cidades/:cidade_id', CidadesController.editarCidade); // Editar cidades
+router.delete('/cidades/:cidade_id', CidadesController.apagarCidade); // Apagar cidades
 
 // // Routes para estados
 // router.get('/estados', EstadosController.listarEstado); // Listar estados
