@@ -25,7 +25,7 @@ module.exports = {
     }
   },
 
-  // Cadastrar Avaliações
+  // Cadastrar Avaliações não funciona
   async cadastrarAvaliacao(request, response) {
     try {
       const { usu_id, far_id, nota, ava_comentario } = request.body;
@@ -46,7 +46,7 @@ module.exports = {
     }
   },
 
-  // Editar Avaliações
+  // Editar Avaliações não funciona
   async editarAvaliacao(request, response) {
     try {
       const { usu_id, far_id, nota, ava_comentario } = request.body;
@@ -69,7 +69,7 @@ module.exports = {
     }
   },
 
-  // Apagar Avaliações
+  // Apagar Avaliações ok
   async apagarAvaliacao(request, response) {
     try {
       const { ava_id } = request.params;

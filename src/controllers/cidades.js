@@ -24,7 +24,7 @@ module.exports = {
     }
   },
 
-  // Cadastrar Cidades
+  // Cadastrar Cidades ok
   async cadastrarCidade(request, response) {
     try {
      const { nome_cidade, uf_sigla } = request.body;
@@ -47,11 +47,9 @@ module.exports = {
   // Editar Cidades
   async editarCidade(request, response) {
     try {
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Editar Cidades.',
-        dados: null
-      });
+      const { nome_cidade, us_sigla} =request.body;
+      const { cidade_id} = request.params;
+      const sql = 'UPDATE cidade'
     } catch (error) {
       return response.status(500).json({
         sucesso: false,
