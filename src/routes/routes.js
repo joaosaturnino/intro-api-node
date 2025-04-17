@@ -61,8 +61,8 @@ router.delete('/promocoes', PromocoesController.apagarPromocoes); // Apagar prom
 // Routes para farmaceuticas
 router.get('/farmaceutica', FarmaceuticasController.listarFarmaceutica); // Listar farmaceuticas
 router.post('/farmaceutica', FarmaceuticasController.cadastrarFarmaceutica); // Cadastrar farmaceuticas
-router.patch('/farmaceutica', FarmaceuticasController.editarFarmaceutica); // Editar farmaceuticas
-router.delete('/farmaceutica', FarmaceuticasController.apagarFarmaceutica); // Apagar farmaceuticas
+router.patch('/farmaceutica/:forma_id', FarmaceuticasController.editarFarmaceutica); // Editar farmaceuticas
+router.delete('/farmaceutica/:forma_id', FarmaceuticasController.apagarFarmaceutica); // Apagar farmaceuticas
 
 // Routes para funcionarios
 router.get('/funcionario', FuncionariosController.listarFuncionario); // Listar funcionarios

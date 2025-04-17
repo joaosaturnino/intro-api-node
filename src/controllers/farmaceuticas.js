@@ -48,9 +48,16 @@ module.exports = {
   // Editar uma forma farmaceutica
   async editarFarmaceutica(request, response) {
     try {
+      const { forma_nome } = request.body;
+      const { forma_id } = request.params;
+      const sql = 'UPDATE forma_farmaceutica SET forma_nome = ? WHERE forma_id = ?;';
+      const values = [forma_nome, forma_id];
+
+      const atualizacao = await db.query(sql, values);
+
       return response.status(200).json({
         sucesso: true,
-        mensagem: 'Editar formas farmaceuticas.',
+        mensagem: 'Forma farmaceutica atualizada com sucesso.',
         dados: null
       });
     } catch (error) {
@@ -65,9 +72,15 @@ module.exports = {
   // Apagar uma forma farmaceutica
   async apagarFarmaceutica(request, response) {
     try {
+      const { forma_id } = request.body;
+      const sql = 'DELETE FROM forma_farmaceutica WHERE forma_id = ?;';
+      const values = [forma_id];
+
+      const confirmacao = await db.query(sql, values);
+
       return response.status(200).json({
         sucesso: true,
-        mensagem: 'Apagar formas farmaceuticas.',
+        mensagem: 'Forma farmaceutica apagada com sucesso.',
         dados: null
       });
     } catch (error) {
