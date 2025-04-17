@@ -34,11 +34,14 @@ module.exports = {
   // Cadastrar medicamentos
   async cadastrarMedicamentos(request, response) {
     try {
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Cadastrar medicamentos.',
-        dados: null
-      });
+      const { med_nome, med_dosagem, med_quantidade, forma_id, lab_id, med_img, tipo_id } = request.body;
+      const sql = 'INSERT INTO medicamento (med_nome, med_dosagem, med_quantidade, forma_id, lab_id, med_img, tipo_id) VALUES (?, ?, ?, ?, ?, ?, ?);';  
+      const values = [med_nome, med_dosagem, med_quantidade, forma_id, lab_id, med_img, tipo_id];
+      const confirmacao = await db.query(sql, values);
+
+      const idInst = confirmacao[0].insertId;
+
+      return response.status(200).json({confirma: 'sucesso', message: idInst})
     } catch (error) {
       return response.status(500).json({
         sucesso: false,

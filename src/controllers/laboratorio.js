@@ -27,11 +27,14 @@ module.exports = {
   // Cadastrar Laboratório
   async cadastrarLaboratorio(request, response) {
     try {
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Cadastrar Laboratórios.',
-        dados: null
-      });
+      const { nome_laboratorio, lab_cnpj } = request.body;
+      const sql = 'INSERT INTO laboratorio (nome_laboratorio, lab_cnpj) VALUES (?, ?);';  
+      const values = [nome_laboratorio, lab_cnpj];
+      const confirmacao = await db.query(sql, values);
+
+      const idInst = confirmacao[0].insertId;
+
+      return response.status(200).json({confirma: 'sucesso', message: idInst})
     } catch (error) {
       return response.status(500).json({
         sucesso: false,

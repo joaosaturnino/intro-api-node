@@ -27,11 +27,14 @@ module.exports = {
   // Cadastrar funcionarios
   async cadastrarFuncionario(request, response) {
     try {
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Cadastrar Funcionarios.',
-        dados: null
-      });
+      const {cargo, usu_id} = request.body;
+      const sql = 'INSERT INTO funcionarios (cargo, usu_id) VALUES (?, ?);';
+      const values = [cargo, usu_id];
+      const confirmacao = await db.query(sql, values);
+
+      const idInst = confirmacao[0].insertId;
+
+      return response.status(200).json({confirma: 'sucesso', message: idInst})
     } catch (error) {
       return response.status(500).json({
         sucesso: false,
@@ -44,11 +47,14 @@ module.exports = {
   // Editar funcionarios
   async editarFuncionario(request, response) {
     try {
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Editar Funcionarios.',
-        dados: null
-      });
+      const {cargo, usu_id} = request.body;
+      const {func_id} = request.params;
+      const sql = 'UPDATE funcionarios SET cargo = ?, usu_id = ? WHERE func_id = ?;';
+      const values = [cargo, usu_id, func_id];
+      const confirmacao = await db.query(sql, values);
+
+      const idInst = confirmacao[0].affectedRows;
+      return response.status(200).json({confirma: 'sucesso', message: idInst})
     } catch (error) {
       return response.status(500).json({
         sucesso: false,

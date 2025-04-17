@@ -67,14 +67,14 @@ router.delete('/farmaceutica', FarmaceuticasController.apagarFarmaceutica); // A
 // Routes para funcionarios
 router.get('/funcionario', FuncionariosController.listarFuncionario); // Listar funcionarios
 router.post('/funcionario', FuncionariosController.cadastrarFuncionario); // Cadastrar funcionarios
-router.patch('/funcionario', FuncionariosController.editarFuncionario); // Editar funcionarios
+router.patch('/funcionario/:func_id', FuncionariosController.editarFuncionario); // Editar funcionarios
 router.delete('/funcionario', FuncionariosController.apagarFuncionario); // Apagar funcionarios
 
 // Routes para avaliacao
 router.get('/avaliacao', AvaliacaoController.listarAvaliacao); // Listar avaliacao
 router.post('/avaliacao', AvaliacaoController.cadastrarAvaliacao); // Cadastrar avaliacao
-router.patch('/avaliacao/', AvaliacaoController.editarAvaliacao); // Editar avaliacao
-router.delete('/avaliacao', AvaliacaoController.apagarAvaliacao); // Apagar avaliacao
+router.patch('/avaliacao/:ava_id', AvaliacaoController.editarAvaliacao); // Editar avaliacao
+router.delete('/avaliacao/:ava_id', AvaliacaoController.apagarAvaliacao); // Apagar avaliacao
 
 // Routes para laboratorio
 router.get('/laboratorio', LaboratorioController.listarLaboratorio); // Listar laboratorio

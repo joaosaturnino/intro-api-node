@@ -1,4 +1,5 @@
 const db = require('../dataBase/connection');
+const { json, response } = require('express');
 
 module.exports = {
 
@@ -48,17 +49,16 @@ module.exports = {
   // Editar Avaliações
   async editarAvaliacao(request, response) {
     try {
-      const { ava_id } = request.params;
       const { usu_id, far_id, nota, ava_comentario } = request.body;
+      const { ava_id } = request.params;
       const sql = 'UPDATE avaliacao SET usu_id = ?, far_id = ?, nota = ?, ava_comentario = ? WHERE ava_id = ?;';
       const values = [usu_id, far_id, nota, ava_comentario, ava_id];
-      const atualizacao = await db.query(sql, values);
-      
-      return response.status(200).json({confirmacao: 'Sucesso', message: 'Dados atualizados.'})
+      const confirmacao = await db.query(sql, values);
+
       return response.status(200).json({
         sucesso: true,
-        mensagem: 'Editar Avaliações.',
-        dados: null
+        mensagem: 'Avaliação editada com sucesso',
+        dados: confirmacao[0]
       });
     } catch (error) {
       return response.status(500).json({
@@ -72,11 +72,13 @@ module.exports = {
   // Apagar Avaliações
   async apagarAvaliacao(request, response) {
     try {
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Apagar Avaliações.',
-        dados: null
-      });
+      const { ava_id } = request.params;
+      const sql = 'DELETE FROM avaliacao WHERE ava_id = ?;';
+      const values = [ava_id];
+      const confirmacao = await db.query(sql, values);
+
+      const idInst =  confirmacao[0].affectedRows;
+      return response.status(200).json({confirmacao: 'sucesso', message: idInst})
     } catch (error) {
       return response.status(500).json({
         sucesso: false,
