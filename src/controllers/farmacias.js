@@ -24,11 +24,11 @@ module.exports = {
     }
   },
 
-  // Cadastrar farmácias
+  // Cadastrar farmácias nao funciona
   async cadastrarFarmacias(request, response) {
     try {
       const { farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo, func_id, cid_id} = request.body;
-      const sql = 'INSERT INTO farmacia (farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo, func_id, cid_id) VALUES (?, ?, ?, ?, ?, ?);';
+      const sql = 'INSERT INTO farmacia (farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo, func_id, cid_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
       const values = [farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo, func_id, cid_id];
       const confirmacao = await db.query(sql, values);
 
@@ -47,11 +47,9 @@ module.exports = {
   // Editar farmácias
   async editarFarmacias(request, response) {
     try {
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Editar farmacias.',
-        dados: null
-      });
+      const { farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo, func_id, cid_id} = request.body;
+      const { farm_id } = request.params;
+      const sql = 'UPDATE farmacia SET farm'
     } catch (error) {
       return response.status(500).json({
         sucesso: false,

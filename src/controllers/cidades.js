@@ -44,7 +44,7 @@ module.exports = {
     }
   },
 
-  // Editar Cidades
+  // Editar Cidades ok
   async editarCidade(request, response) {
     try {
       const { nome_cidade, us_sigla} =request.body;
@@ -67,10 +67,10 @@ module.exports = {
     }
   },
 
-  // Apagar Cidades
+  // Apagar Cidades ok
   async apagarCidade(request, response) {
     try {
-      const { cidade_id } = request.body;
+      const { cidade_id } = request.params;
       const sql = 'DELETE FROM cidade WHERE cidade_id = ?;';
       const values = [cidade_id];
       const confirmacao = await db.query(sql, values);

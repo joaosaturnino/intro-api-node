@@ -24,7 +24,7 @@ module.exports = {
     }
   },
 
-  // Cadastrar uma nova forma farmaceutica
+  // Cadastrar uma nova forma farmaceutica ok
   async cadastrarFarmaceutica(request, response) {
     try {
       const { forma_nome } = request.body;
@@ -45,7 +45,7 @@ module.exports = {
     }
   },
 
-  // Editar uma forma farmaceutica
+  // Editar uma forma farmaceutica ok
   async editarFarmaceutica(request, response) {
     try {
       const { forma_nome } = request.body;
@@ -69,10 +69,10 @@ module.exports = {
     }
   },
 
-  // Apagar uma forma farmaceutica
+  // Apagar uma forma farmaceutica ok
   async apagarFarmaceutica(request, response) {
     try {
-      const { forma_id } = request.body;
+      const { forma_id } = request.params;
       const sql = 'DELETE FROM forma_farmaceutica WHERE forma_id = ?;';
       const values = [forma_id];
 

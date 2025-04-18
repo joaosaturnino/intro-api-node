@@ -25,7 +25,7 @@ module.exports = {
     }
   },
 
-  // Cadastrar Avaliações não funciona
+  // Cadastrar Avaliações ok
   async cadastrarAvaliacao(request, response) {
     try {
       const { usu_id, far_id, nota, ava_comentario } = request.body;
@@ -46,19 +46,18 @@ module.exports = {
     }
   },
 
-  // Editar Avaliações não funciona
+  // Editar Avaliações ok
   async editarAvaliacao(request, response) {
     try {
-      const { usu_id, far_id, nota, ava_comentario } = request.body;
+      const { nota, ava_comentario } = request.body;
       const { ava_id } = request.params;
-      const sql = 'UPDATE avaliacao SET usu_id = ?, far_id = ?, nota = ?, ava_comentario = ? WHERE ava_id = ?;';
-      const values = [usu_id, far_id, nota, ava_comentario, ava_id];
-      const confirmacao = await db.query(sql, values);
+      const sql = 'UPDATE avaliacao SET nota = ?, ava_comentario = ? WHERE ava_id = ?;';
+      const values = [nota, ava_comentario, ava_id];
+      const atualizacao = await db.query(sql, values);
 
       return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Avaliação editada com sucesso',
-        dados: confirmacao[0]
+        confirma: 'Sucesso',
+        message: 'Avaliação atualizada com sucesso.',
       });
     } catch (error) {
       return response.status(500).json({
