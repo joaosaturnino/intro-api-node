@@ -8,10 +8,8 @@ module.exports = {
     try {
       // Instrução SQL para listar avaliações
       const sql = 'SELECT ava_id, usu_id, far_id, nota, ava_comentario FROM avaliacao;';
-
       // Executa a consulta no banco de dados
       const [rows] = await db.query(sql);
-
       // Verifica se há registros retornados
       return response.status(200).json({
         sucesso: true,
@@ -40,7 +38,6 @@ module.exports = {
       const values = [usu_id, far_id, nota, ava_comentario];
       // Executa a instrução de inserção no banco de dados
       const [rows] = await db.query(sql, values);
-
       // Exibe o id do registro inserido
       return response.status(200).json({
         sucesso: true,
@@ -71,7 +68,6 @@ module.exports = {
       const values = [nota, ava_comentario, ava_id];
       // Executa a instrução de atualização no banco de dados
       const [rows] = await db.query(sql, values);
-
       // Verifica se há registros retornados
       return response.status(200).json({
         sucesso: true,
@@ -100,7 +96,6 @@ module.exports = {
       const values = [ava_id];
       // Executa a instrução de exclusão no banco de dados
       const [rows] = await db.query(sql, values);
-
       // Verifica se há registros retornados
       return response.status(200).json({
         sucesso: true,

@@ -5,10 +5,11 @@ module.exports = {
   // Listar Tipos de Produtos
   async listarTipoProduto(request, response) {
     try {
+      // instrução sql para listar tipos de produtos
       const sql = 'SELECT tipo_id, nome_tipo FROM tipo_produto;';
-
+      // executa a instrução de listagem no banco de dados
       const [rows] = await db.query(sql);
-
+      // exibe o resultado da consulta
       return response.status(200).json({
         sucesso: true,
         mensagem: 'Lista de Tipos de Produtos',
@@ -16,6 +17,7 @@ module.exports = {
         dados: rows
       });
     }catch (error) {
+      // retorna erro caso ocorra
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
@@ -27,12 +29,23 @@ module.exports = {
   // Cadastrar Tipos de Produtos
   async cadastrarTipoProduto(request, response) {
     try {
-      return response.status(200).json({
+      // parametros passados via corpo de requisição
+      const { nome_tipo } = request.body;
+      // instrução sql para inserção
+      const sql = 'INSERT INTO tipo_produto (nome_tipo) VALUES (?);';
+      // definição de array com paramentros que receberão os valores do front-end
+      const values = [nome_tipo];
+      // executa a instrução de inserção no banco de dados
+      const [rows] = await db.query(sql, values);
+      // exibe o id do registro inserido
+      return response.status(201).json({
         sucesso: true,
-        mensagem: 'Cadastrar Tipos de Produtos.',
-        dados: null
+        mensagem: 'Tipo de Produto cadastrado com sucesso.',
+        itens: rows.length,
+        dados: rows
       });
     } catch (error) {
+      // retorna erro caso ocorra
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
@@ -44,12 +57,25 @@ module.exports = {
   // Editar Tipos de Produtos
   async editarTipoProduto(request, response) {
     try {
+      // parametros passados via corpo de requisição
+      const { nome_tipo } = request.body;
+      // parametros passados via url
+      const { tipo_id } = request.params;
+      // instrução sql para atualização
+      const sql = 'UPDATE tipo_produto SET nome_tipo = ? WHERE tipo_id = ?;';
+      // definição de array com paramentros que receberão os valores do front-end
+      const values = [nome_tipo, tipo_id];
+      // executa a instrução de atualização no banco de dados
+      const [rows] = await db.query(sql, values);
+      // exibe o id do registro atualizado
       return response.status(200).json({
         sucesso: true,
-        mensagem: 'Editar Tipos de Produtos.',
-        dados: null
+        mensagem: 'Tipo de Produto atualizado com sucesso.',
+        itens: rows.length,
+        dados: rows
       });
     } catch (error) {
+      // retorna erro caso ocorra
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
@@ -61,12 +87,23 @@ module.exports = {
   // Apagar Tipos de Produtos
   async apagarTipoProduto(request, response) {
     try {
+      // parametros passados via url
+      const { tipo_id } = request.params;
+      // instrução sql para apagar tipos de produtos
+      const sql = 'DELETE FROM tipo_produto WHERE tipo_id = ?;';
+      // definição de array com paramentros que receberão os valores do front-end
+      const values = [tipo_id];
+      // executa a instrução de deleção no banco de dados
+      const [rows] = await db.query(sql, values);
+      // exibe o resultado da consulta
       return response.status(200).json({
         sucesso: true,
-        mensagem: 'Apagar Tipos de Produtos.',
-        dados: null
+        mensagem: 'Tipo de Produto apagado com sucesso.',
+        itens: rows.length,
+        dados: rows
       });
     } catch (error) {
+      // retorna erro caso ocorra
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',

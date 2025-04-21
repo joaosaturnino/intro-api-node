@@ -7,10 +7,8 @@ module.exports = {
     try {
       // Instrução SQL para listar cidades
       const sql = 'SELECT cidade_id, nome_cidade, uf_sigla FROM cidade;';
-
       // Executa a consulta no banco de dados
       const [rows] = await db.query(sql);
-
       // Verifica se há registros retornados
       return response.status(200).json({
         sucesso: true,
@@ -39,7 +37,6 @@ module.exports = {
      const values = [nome_cidade, uf_sigla];
       // Executa a instrução de inserção no banco de dados
       const [rows] = await db.query(sql, values);
-
       // Verifica se há registros retornados
       return response.status(200).json({
         sucesso: true,
@@ -69,7 +66,6 @@ module.exports = {
       const values = [nome_cidade, us_sigla, cidade_id];
       // Executa a instrução de atualização no banco de dados
       const [rows] = await db.query(sql, values);
-
       // Verifica se há registros retornados
       return response.status(200).json({
         sucesso: true,
@@ -98,7 +94,6 @@ module.exports = {
       const values = [cidade_id];
       // Executa a instrução de exclusão no banco de dados
       const [rows] = await db.query(sql, values);
-
       // Verifica se há registros retornados
       return response.status(200).json({
         sucesso: true,

@@ -7,10 +7,8 @@ module.exports = {
     try {
       // instrução sql para listar farmácias
       const sql = 'SELECT farm_id, farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo, func_id, cid_id FROM farmacia;';
-
       // executa a instrução de listagem no banco de dados
-      const [rows] = await db.query(sql);
-
+      const [rows] = await db.query(sql)
       // exibe o resultado da consulta
       return response.status(200).json({
         sucesso: true,
@@ -33,16 +31,12 @@ module.exports = {
     try {
       // parametros passados via corpo de requisição
       const { farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo, func_id, cid_id} = request.body;
-      
       // instrução sql para inserção
       const sql = 'INSERT INTO farmacia (farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo, func_id, cid_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);';
-      
       // definição de array com paramentros que receberão os valores do front-end
       const values = [farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo, func_id, cid_id];
-      
       // executa a instrução de inserção no banco de dados
       const [rows] = await db.query(sql, values);
-      
       // exibe o id do registro inserido
       return response.status(200).json({
         sucesso: true,
@@ -65,17 +59,14 @@ module.exports = {
     try {
       // parametros passados via corpo de requisição
       const { farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo, func_id, cid_id} = request.body;
-
       // parametros passados via url
       const { farm_id } = request.params;
+      // instrução sql para edição
       const sql = 'UPDATE farmacia SET farm_nome = ?, farm_endereco = ?, farm_telefone = ?, farm_email = ?, farm_senha = ?, cnpj = ?, farm_logo = ?, func_id = ?, cid_id = ? WHERE farm_id = ?;';
-
       // definição de array com paramentros que receberão os valores do front-end
       const values = [farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo, func_id, cid_id, farm_id];
-
       // executa a instrução de edição no banco de dados
       const [rows] = await db.query(sql, values);
-
       // exibe o id do registro editado
       return response.status(200).json({
         sucesso: true,
@@ -98,16 +89,12 @@ module.exports = {
     try {
       // parametros passados via url
       const { farm_id } = request.params;
-
       // instrução sql para apagar farmácias
       const sql = 'DELETE FROM farmacia WHERE farm_id = ?;';
-
       // definição de array com paramentros que receberão os valores do front-end
       const values = [farm_id];
-
       // executa a instrução de apagar no banco de dados
       const [rows] = await db.query(sql, values);
-
       // exibe o id do registro apagado
       return response.status(200).json({
         sucesso: true,

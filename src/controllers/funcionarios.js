@@ -7,10 +7,8 @@ module.exports = {
     try {
       // instrução sql para listar funcionarios
       const sql = 'SELECT func_id, cargo, usu_id FROM funcionarios;';
-
       // executa a instrução de listagem no banco de dados
       const [rows] = await db.query(sql);
-
       // exibe o resultado da consulta
       return response.status(200).json({
         sucesso: true,
@@ -33,16 +31,12 @@ module.exports = {
     try {
       // parametros passados via corpo de requisição
       const {cargo, usu_id} = request.body;
-
       // instrução sql para inserção
       const sql = 'INSERT INTO funcionarios (cargo, usu_id) VALUES (?, ?);';
-
       // definição de array com paramentros que receberão os valores do front-end
       const values = [cargo, usu_id];
-
       // executa a instrução de inserção no banco de dados
-      const [rows] = await db.query(sql, values);
-
+      const [rows] = await db.query(sql, values)
       // exibe o id do registro inserido
       return response.status(200).json({
         sucesso: true,
@@ -65,19 +59,14 @@ module.exports = {
     try {
       // parametros passados via corpo de requisição
       const {cargo, usu_id} = request.body;
-      
       // parametros passados via url
       const {func_id} = request.params;
-
       // instrução sql para edição
       const sql = 'UPDATE funcionarios SET cargo = ?, usu_id = ? WHERE func_id = ?;';
-
       // definição de array com paramentros que receberão os valores do front-end
       const values = [cargo, usu_id, func_id];
-
       // executa a instrução de edição no banco de dados
       const [rows] = await db.query(sql, values);
-
       // exibe o id do registro editado
       return response.status(200).json({
         sucesso: true,
@@ -100,16 +89,12 @@ module.exports = {
     try {
       // parametros passados via url
       const {func_id} = request.params;
-
       // instrução sql para apagar
       const sql = 'DELETE FROM funcionarios WHERE func_id = ?;';
-
       // definição de array com paramentros que receberão os valores do front-end
       const values = [func_id];
-
       // executa a instrução de apagar no banco de dados
       const [rows] = await db.query(sql, values);
-
       // exibe o id do registro apagado
       return response.status(200).json({
         sucesso: true,

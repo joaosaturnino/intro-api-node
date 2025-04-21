@@ -5,10 +5,11 @@ module.exports = {
   // Listar todas as formas farmaceuticas
   async listarFarmaceutica(request, response) {
     try {
+      // instrução sql para listar formas farmaceuticas
       const sql = 'SELECT forma_id, forma_nome FROM forma_farmaceutica;';
-
+      // executa a instrução de listagem no banco de dados
       const [rows] = await db.query(sql);
-
+      // exibe o resultado da consulta
       return response.status(200).json({
         sucesso: true,
         mensagem: 'Lista de formas farmaceuticas',
@@ -65,7 +66,6 @@ module.exports = {
       const values = [forma_nome, forma_id];
       // executa a instrução de edição no banco de dados
       const [rows] = await db.query(sql, values);
-
       // exibe o id do registro editado
       return response.status(200).json({
         sucesso: true,
@@ -92,10 +92,8 @@ module.exports = {
       const sql = 'DELETE FROM forma_farmaceutica WHERE forma_id = ?;';
       // definição de array com paramentros que receberão os valores do front-end
       const values = [forma_id];
-
       // executa a instrução de apagar no banco de dados
       const [rows] = await db.query(sql, values);
-
       // exibe o id do registro apagado
       return response.status(200).json({
         sucesso: true,
