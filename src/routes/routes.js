@@ -43,7 +43,7 @@ router.delete('/medpreco', MedPrecoController.apagarMedPreco); // Apagar precos 
 // Routes para farmácias
 router.get('/farmacias', FarmaciasController.listarFarmacias); // Listar farmácias
 router.post('/farmacias', FarmaciasController.cadastrarFarmacias); // Cadastrar farmácias
-router.patch('/farmacias', FarmaciasController.editarFarmacias); // Editar farmácias
+router.patch('/farmacias/:farm_id', FarmaciasController.editarFarmacias); // Editar farmácias
 router.delete('/farmacias', FarmaciasController.apagarFarmacias); // Apagar farmácias
 
 // Routes para medicamentos
