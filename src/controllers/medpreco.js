@@ -1,5 +1,8 @@
 const db = require('../dataBase/connection');
+const { json, response } = require('express');
 
+// Controller para gerenciar avaliações
+// Este módulo contém funções para listar, cadastrar, editar e apagar avaliações no banco de dados
 module.exports = {
 
   // Listar Preços de medicamentos
@@ -16,6 +19,7 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
+      // retorna erro caso ocorra
     }catch (error) {
       return response.status(500).json({
         sucesso: false,
@@ -42,8 +46,8 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
-    } catch (error) {
       // retorna erro caso ocorra
+    } catch (error) {
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
@@ -72,13 +76,13 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
-    } catch (error) {
       // retorna erro caso ocorra
+    } catch (error) {
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
         dados: error.mensage
-      })
+      });
     }
   },
 
@@ -100,13 +104,41 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
+    // retorna erro caso ocorra
     } catch (error) {
-      // retorna erro caso ocorra
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
         dados: error.mensage
-      })
+      });
     }
   },
+
+  // Listar Preços de medicamentos específicos
+  async listarUnicoMedPreco(request, response) {
+    try {
+      // parametros passados via url
+      const { medpreco_id } = request.params;
+      // instrução sql para listar preços de medicamentos específicos
+      const sql = 'SELECT medpreco_id, farmacia_id, med_id, preco FROM medpreco WHERE medpreco_id = ?;';
+      // definição de array com paramentros que receberão os valores do front-end
+      const values = [medpreco_id];
+      // executa a instrução de listagem no banco de dados
+      const [rows] = await db.query(sql, values);
+      // exibe o resultado da consulta
+      return response.status(200).json({
+        sucesso: true,
+        mensagem: 'Lista de Preços de medicamentos',
+        itens: rows.length,
+        dados: rows
+      });
+    // retorna erro caso ocorra
+    } catch (error) {
+      return response.status(500).json({
+        sucesso: false,
+        mensagem: 'Erro na requisição.',
+        dados: error.mensage
+      });
+    }
+  }
 }

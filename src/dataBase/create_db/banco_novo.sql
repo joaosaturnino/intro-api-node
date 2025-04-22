@@ -6,26 +6,26 @@ CREATE TABLE cidade (
     cidade_id INT AUTO_INCREMENT PRIMARY KEY,
     nome_cidade VARCHAR(50) NOT NULL,
     uf_sigla CHAR(2) NOT NULL
-); -- criado
+);
 
 -- Tipo de Produto
 CREATE TABLE tipo_produto (
     tipo_id INT AUTO_INCREMENT PRIMARY KEY,
     nome_tipo VARCHAR(50) NOT NULL
-); -- criado
+);
 
 -- Forma Farmacêutica
 CREATE TABLE forma_farmaceutica (
     forma_id INT AUTO_INCREMENT PRIMARY KEY,
     forma_nome VARCHAR(50) NOT NULL
-); -- criado
+);
 
 -- Laboratório
 CREATE TABLE laboratorio (
     lab_id INT AUTO_INCREMENT PRIMARY KEY,
     nome_laboratorio VARCHAR(60) NOT NULL,
     lab_cnpj CHAR(14)
-); -- criado
+);
 
 -- Usuários
 CREATE TABLE usuarios (
@@ -37,7 +37,7 @@ CREATE TABLE usuarios (
     usu_tipo TINYINT CHECK (usu_tipo IN (0, 1, 2)),
     cid_id INT,
     FOREIGN KEY (cid_id) REFERENCES cidade(cidade_id)
-); -- criado
+);
 
 -- Funcionários
 CREATE TABLE funcionarios (
@@ -45,7 +45,7 @@ CREATE TABLE funcionarios (
     cargo VARCHAR(50) NOT NULL,
     usu_id INT NOT NULL,
     FOREIGN KEY (usu_id) REFERENCES usuarios(usu_id)
-); -- criado
+);
 
 -- Farmácia
 CREATE TABLE farmacia (
@@ -61,7 +61,7 @@ CREATE TABLE farmacia (
     cid_id INT,
     FOREIGN KEY (func_id) REFERENCES funcionarios(func_id),
     FOREIGN KEY (cid_id) REFERENCES cidade(cidade_id)
-); -- criado
+);
 
 -- Medicamento
 CREATE TABLE medicamento (
@@ -77,7 +77,7 @@ CREATE TABLE medicamento (
     FOREIGN KEY (forma_id) REFERENCES forma_farmaceutica(forma_id),
     FOREIGN KEY (lab_id) REFERENCES laboratorio(lab_id),
     FOREIGN KEY (tipo_id) REFERENCES tipo_produto(tipo_id)
-); -- criado
+);
 
 -- Tabela Intermediária: MedPrecos
 CREATE TABLE medpreco (
@@ -87,7 +87,7 @@ CREATE TABLE medpreco (
     preco DECIMAL(10,2) NOT NULL,
     FOREIGN KEY (farmacia_id) REFERENCES farmacia(farm_id),
     FOREIGN KEY (med_id) REFERENCES medicamento(med_id)
-); -- criado
+);
 
 -- Promoção
 CREATE TABLE promocao (

@@ -1,5 +1,8 @@
 const db = require('../dataBase/connection');
+const { json, response } = require('express');
 
+// Controller para gerenciar medicamentos
+// Este módulo contém funções para listar, cadastrar, editar e apagar medicamentos no banco de dados
 module.exports = {
 
   // Listar todos os medicamentos
@@ -17,8 +20,8 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
-    }catch (error) {
       // retorna erro caso ocorra
+    }catch (error) {
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
@@ -45,8 +48,8 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
-    } catch (error) {
       // retorna erro caso ocorra
+    } catch (error) {
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
@@ -75,13 +78,13 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
+    // retorna erro caso ocorra
     } catch (error) {
-      // retorna erro caso ocorra
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
         dados: error.mensage
-      })
+      });
     }
   },
 
@@ -103,13 +106,41 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
+    // retorna erro caso ocorra
     } catch (error) {
-      // retorna erro caso ocorra
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
         dados: error.mensage
-      })
+      });
     }
   },
+
+  // listar medicamento especifico
+  async listarUnicoMedicamento(request, response) {
+    try {
+      // parametros passados via url
+      const { med_id } = request.params;
+      // instrução sql para listar medicamento especifico
+      const sql = 'SELECT med_id, med_nome, med_dosagem, med_quantidade, forma_id descricao, lab_id, med_img, tipo_id FROM medicamento WHERE med_id = ?;';
+      // definição de array com paramentros que receberão os valores do front-end
+      const values = [med_id];
+      // executa a instrução de listagem no banco de dados
+      const [rows] = await db.query(sql, values);
+      // exibe o resultado da consulta
+      return response.status(200).json({
+        sucesso: true,
+        mensagem: 'Medicamento encontrado.',
+        itens: rows.length,
+        dados: rows
+      });
+    // retorna erro caso ocorra
+    } catch (error) {
+      return response.status(500).json({
+        sucesso: false,
+        mensagem: 'Erro na requisição.',
+        dados: error.mensage
+      });
+    }
+  }
 }

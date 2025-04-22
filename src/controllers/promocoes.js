@@ -1,5 +1,8 @@
 const db = require('../dataBase/connection');
+const { json, response } = require('express');
 
+// Controller para gerenciar avaliações
+// Este módulo contém funções para listar, cadastrar, editar e apagar avaliações no banco de dados
 module.exports = {
 
   // Listar todas as promoções
@@ -16,8 +19,8 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
-    }catch (error) {
       // retorna erro caso ocorra
+    }catch (error) {
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
@@ -44,8 +47,8 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
-    } catch (error) {
       // retorna erro caso ocorra
+    } catch (error) {
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
@@ -74,13 +77,13 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
+    // retorna erro caso ocorra
     } catch (error) {
-      // retorna erro caso ocorra
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
         dados: error.mensage
-      })
+      });
     }
   },
 
@@ -102,13 +105,41 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
+    // retorna erro caso ocorra
     } catch (error) {
-      // retorna erro caso ocorra
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
         dados: error.mensage
-      })
+      });
     }
   },
+
+  // Listar uma promoção específica
+  async listarUnicaPromocao(request, response) {
+    try {
+      // parametros passados via url
+      const { promo_id } = request.params;
+      // instrução sql para listagem
+      const sql = 'SELECT promo_id, farm_id, med_id, promo_desconto, promo_inicio, promo_fim FROM promocao WHERE promo_id = ?;';
+      // definição de array com paramentros que receberão os valores do front-end
+      const values = [promo_id];
+      // executa a instrução de listagem no banco de dados
+      const [rows] = await db.query(sql, values);
+      // exibe o resultado da consulta
+      return response.status(200).json({
+        sucesso: true,
+        mensagem: 'Promoção encontrada.',
+        itens: rows.length,
+        dados: rows
+      });
+    // retorna erro caso ocorra
+    } catch (error) {
+      return response.status(500).json({
+        sucesso: false,
+        mensagem: 'Erro na requisição.',
+        dados: error.mensage
+      });
+    }
+  }
 }

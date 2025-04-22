@@ -2,96 +2,93 @@ const express = require('express');
 const router = express.Router();
 
 // Importando os controllers
-const FarmaciasController = require('../controllers/farmacias');
-const PromocoesController = require('../controllers/promocoes');
-const MedicamentosController = require('../controllers/medicamentos');
-const FarmaceuticasController = require('../controllers/farmaceuticas');
-const FuncionariosController = require('../controllers/funcionarios');
 const AvaliacaoController = require('../controllers/avaliacao');
-const LaboratorioController = require('../controllers/laboratorio');
-// const PrecoController = require('../controllers/precos');
-const UsuarioController = require('../controllers/usuarios');
 const CidadesController = require('../controllers/cidades');
-// const EstadosController = require('../controllers/estados');
-const TiposProdutoController = require('../controllers/tipoproduto');
+const FarmaceuticasController = require('../controllers/farmaceuticas');
+const FarmaciasController = require('../controllers/farmacias');
+const FuncionariosController = require('../controllers/funcionarios');
+const LaboratorioController = require('../controllers/laboratorio');
+const MedicamentosController = require('../controllers/medicamentos');
 const MedPrecoController = require('../controllers/medpreco');
-
-// Routes para tipos de produtos
-router.get('/tipoproduto', TiposProdutoController.listarTipoProduto); // Listar tipos de produtos
-router.post('/tipoproduto', TiposProdutoController.cadastrarTipoProduto); // Cadastrar tipos de produtos
-router.patch('/tipoproduto/:tipo_id', TiposProdutoController.editarTipoProduto); // Editar tipos de produtos
-router.delete('/tipoproduto/:tipo_id', TiposProdutoController.apagarTipoProduto); // Apagar tipos de produtos
-
-// Routes para cidades
-router.get('/cidades', CidadesController.listarCidade); // Listar cidades
-router.post('/cidades', CidadesController.cadastrarCidade); // Cadastrar cidades
-router.patch('/cidades/:cidade_id', CidadesController.editarCidade); // Editar cidades
-router.delete('/cidades/:cidade_id', CidadesController.apagarCidade); // Apagar cidades
-
-// // Routes para estados
-// router.get('/estados', EstadosController.listarEstado); // Listar estados
-// router.post('/estados', EstadosController.cadastrarEstado); // Cadastrar estados
-// router.patch('/estados', EstadosController.editarEstado); // Editar estados
-// router.delete('/estados', EstadosController.apagarEstado); // Apagar estados
-
-// Routes para precos medicamentos
-router.get('/medpreco', MedPrecoController.listarMedPreco); // Listar precos medicamentos
-router.post('/medpreco', MedPrecoController.cadastrarMedPreco); // Cadastrar precos medicamentos
-router.patch('/medpreco/:medpreco_id', MedPrecoController.editarMedPreco); // Editar precos medicamentos
-router.delete('/medpreco/:medpreco_id', MedPrecoController.apagarMedPreco); // Apagar precos medicamentos
-
-// Routes para farmácias
-router.get('/farmacias', FarmaciasController.listarFarmacias); // Listar farmácias
-router.post('/farmacias', FarmaciasController.cadastrarFarmacias); // Cadastrar farmácias
-router.patch('/farmacias/:farm_id', FarmaciasController.editarFarmacias); // Editar farmácias
-router.delete('/farmacias/:farm_id', FarmaciasController.apagarFarmacias); // Apagar farmácias
-
-// Routes para medicamentos
-router.get('/medicamentos', MedicamentosController.listarMedicamentos); // Listar medicamentos
-router.post('/medicamentos', MedicamentosController.cadastrarMedicamentos); // Cadastrar medicamentos
-router.patch('/medicamentos/:med_id', MedicamentosController.editarMedicamentos); // Editar medicamentos
-router.delete('/medicamentos/:med_id', MedicamentosController.apagarMedicamentos); // Apagar medicamentos
-
-// Routes para promoções
-router.get('/promocoes', PromocoesController.listarPromocoes); // Listar promoções
-router.post('/promocoes', PromocoesController.cadastrarPromocoes); // Cadastrar promoções
-router.patch('/promocoes/:promo_id', PromocoesController.editarPromocoes); // Editar promoções
-router.delete('/promocoes/:promo_id', PromocoesController.apagarPromocoes); // Apagar promoções
-
-// Routes para farmaceuticas
-router.get('/farmaceutica', FarmaceuticasController.listarFarmaceutica); // Listar farmaceuticas
-router.post('/farmaceutica', FarmaceuticasController.cadastrarFarmaceutica); // Cadastrar farmaceuticas
-router.patch('/farmaceutica/:forma_id', FarmaceuticasController.editarFarmaceutica); // Editar farmaceuticas
-router.delete('/farmaceutica/:forma_id', FarmaceuticasController.apagarFarmaceutica); // Apagar farmaceuticas
-
-// Routes para funcionarios
-router.get('/funcionario', FuncionariosController.listarFuncionario); // Listar funcionarios
-router.post('/funcionario', FuncionariosController.cadastrarFuncionario); // Cadastrar funcionarios
-router.patch('/funcionario/:func_id', FuncionariosController.editarFuncionario); // Editar funcionarios
-router.delete('/funcionario/:func_id', FuncionariosController.apagarFuncionario); // Apagar funcionarios
+const PromocoesController = require('../controllers/promocoes');
+const TiposProdutoController = require('../controllers/tipoproduto');
+const UsuarioController = require('../controllers/usuarios');
 
 // Routes para avaliacao
 router.get('/avaliacao', AvaliacaoController.listarAvaliacao); // Listar avaliacao
 router.post('/avaliacao', AvaliacaoController.cadastrarAvaliacao); // Cadastrar avaliacao
 router.patch('/avaliacao/:ava_id', AvaliacaoController.editarAvaliacao); // Editar avaliacao
 router.delete('/avaliacao/:ava_id', AvaliacaoController.apagarAvaliacao); // Apagar avaliacao
+router.get('/avaliacao/:ava_id', AvaliacaoController.listarUnicaAvaliacao); // Listar unica avaliacao
+
+// Routes para cidades
+router.get('/cidades', CidadesController.listarCidade); // Listar cidades
+router.post('/cidades', CidadesController.cadastrarCidade); // Cadastrar cidades
+router.patch('/cidades/:cidade_id', CidadesController.editarCidade); // Editar cidades
+router.delete('/cidades/:cidade_id', CidadesController.apagarCidade); // Apagar cidades
+router.get('/cidades/:cidade_id', CidadesController.listarUnicaCidade); // listar unica cidade
+
+// Routes para farmaceuticas
+router.get('/farmaceutica', FarmaceuticasController.listarFarmaceutica); // Listar farmaceuticas
+router.post('/farmaceutica', FarmaceuticasController.cadastrarFarmaceutica); // Cadastrar farmaceuticas
+router.patch('/farmaceutica/:forma_id', FarmaceuticasController.editarFarmaceutica); // Editar farmaceuticas
+router.delete('/farmaceutica/:forma_id', FarmaceuticasController.apagarFarmaceutica); // Apagar farmaceuticas
+router.get('/farmaceutica/:forma_id', FarmaceuticasController.listarUnicaForma); // listar unica forma farmaceutica
+
+// Routes para farmácias
+router.get('/farmacias', FarmaciasController.listarFarmacias); // Listar farmácias
+router.post('/farmacias', FarmaciasController.cadastrarFarmacias); // Cadastrar farmácias
+router.patch('/farmacias/:farm_id', FarmaciasController.editarFarmacias); // Editar farmácias
+router.delete('/farmacias/:farm_id', FarmaciasController.apagarFarmacias); // Apagar farmácias
+router.get('/farmacias/:farm_id', FarmaciasController.listarUnicaFarmacia); // listar unica farmacia
+
+// Routes para funcionarios
+router.get('/funcionario', FuncionariosController.listarFuncionario); // Listar funcionarios
+router.post('/funcionario', FuncionariosController.cadastrarFuncionario); // Cadastrar funcionarios
+router.patch('/funcionario/:func_id', FuncionariosController.editarFuncionario); // Editar funcionarios
+router.delete('/funcionario/:func_id', FuncionariosController.apagarFuncionario); // Apagar funcionarios
+router.get('/funcionario/:func_id', FuncionariosController.listarUnicoFuncionario); // listar unico funcionario
 
 // Routes para laboratorio
 router.get('/laboratorio', LaboratorioController.listarLaboratorio); // Listar laboratorio
 router.post('/laboratorio', LaboratorioController.cadastrarLaboratorio); // Cadastrar laboratorio
 router.patch('/laboratorio/:lab_id', LaboratorioController.editarLaboratorio); // Editar laboratorio
 router.delete('/laboratorio/:lab_id', LaboratorioController.apagarLaboratorio); // Apagar laboratorio
+router.get('/laboratorio/:lab_id', LaboratorioController.listarUnicoLaboratorio); // listar unico laboratorio
 
-// // Routes para precos
-// router.get('/precos', PrecoController.listarPreco); // Listar precos
-// router.post('/precos', PrecoController.cadastrarPreco); // Cadastrar precos
-// router.patch('/precos', PrecoController.editarPreco); // Editar precos
-// router.delete('/precos', PrecoController.apagarPreco); // Apagar precos
+// Routes para medicamentos
+router.get('/medicamentos', MedicamentosController.listarMedicamentos); // Listar medicamentos
+router.post('/medicamentos', MedicamentosController.cadastrarMedicamentos); // Cadastrar medicamentos
+router.patch('/medicamentos/:med_id', MedicamentosController.editarMedicamentos); // Editar medicamentos
+router.delete('/medicamentos/:med_id', MedicamentosController.apagarMedicamentos); // Apagar medicamentos
+router.get('/medicamentos/:med_id', MedicamentosController.listarUnicoMedicamento); // listar unico medicamento
+
+// Routes para precos medicamentos
+router.get('/medpreco', MedPrecoController.listarMedPreco); // Listar precos medicamentos
+router.post('/medpreco', MedPrecoController.cadastrarMedPreco); // Cadastrar precos medicamentos
+router.patch('/medpreco/:medpreco_id', MedPrecoController.editarMedPreco); // Editar precos medicamentos
+router.delete('/medpreco/:medpreco_id', MedPrecoController.apagarMedPreco); // Apagar precos medicamentos
+router.get('/medpreco/:medpreco_id', MedPrecoController.listarUnicoMedPreco); // listar unico preco medicamento
+
+// Routes para promoções
+router.get('/promocoes', PromocoesController.listarPromocoes); // Listar promoções
+router.post('/promocoes', PromocoesController.cadastrarPromocoes); // Cadastrar promoções
+router.patch('/promocoes/:promo_id', PromocoesController.editarPromocoes); // Editar promoções
+router.delete('/promocoes/:promo_id', PromocoesController.apagarPromocoes); // Apagar promoções
+router.get('/promocoes/:promo_id', PromocoesController.listarUnicaPromocao); // listar unica promocao
+
+// Routes para tipos de produtos
+router.get('/tipoproduto', TiposProdutoController.listarTipoProduto); // Listar tipos de produtos
+router.post('/tipoproduto', TiposProdutoController.cadastrarTipoProduto); // Cadastrar tipos de produtos
+router.patch('/tipoproduto/:tipo_id', TiposProdutoController.editarTipoProduto); // Editar tipos de produtos
+router.delete('/tipoproduto/:tipo_id', TiposProdutoController.apagarTipoProduto); // Apagar tipos de produtos
+router.get('/tipoproduto/:tipo_id', TiposProdutoController.listarUnicoTipoProduto); // listar unico tipo produto
 
 // Routes para usuario
 router.get('/usuarios', UsuarioController.listarUsuario); // Listar usuarios
 router.post('/usuarios', UsuarioController.cadastrarUsuario); // Cadastrar usuarios
 router.patch('/usuarios/:usu_id', UsuarioController.editarUsuario); // Editar usuarios
 router.delete('/usuarios/:usu_id', UsuarioController.apagarUsuario); // Apagar usuarios
+router.get('/usuarios/:usu_id', UsuarioController.listarUnicoUsuario); // listar unico usuario
 
 module.exports = router;

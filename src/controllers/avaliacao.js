@@ -1,9 +1,11 @@
 const db = require('../dataBase/connection');
 const { json, response } = require('express');
 
+// Controller para gerenciar avaliações
+// Este módulo contém funções para listar, cadastrar, editar e apagar avaliações no banco de dados
 module.exports = {
 
-  // Listar Avaliações ok
+  // Listar Avaliações
   async listarAvaliacao(request, response) {
     try {
       // Instrução SQL para listar avaliações
@@ -27,7 +29,7 @@ module.exports = {
     }
   },
 
-  // Cadastrar Avaliações ok
+  // Cadastrar Avaliações
   async cadastrarAvaliacao(request, response) {
     try {
       // Parâmetros passados via corpo de requisição
@@ -45,8 +47,8 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
-    } catch (error) {
       // Retorna erro caso ocorra
+    } catch (error) {
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
@@ -55,7 +57,7 @@ module.exports = {
     }
   },
 
-  // Editar Avaliações ok
+  // Editar Avaliações
   async editarAvaliacao(request, response) {
     try {
       // Parâmetros passados via corpo de requisição
@@ -75,17 +77,17 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
-    } catch (error) {
       // Retorna erro caso ocorra
+    } catch (error) {
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
         dados: error.mensage
-      })
+      });
     }
   },
 
-  // Apagar Avaliações ok
+  // Apagar Avaliações
   async apagarAvaliacao(request, response) {
     try {
       // Parâmetro passado via URL
@@ -103,13 +105,42 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
-    } catch (error) {
       // Retorna erro caso ocorra
+    } catch (error) {
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
         dados: error.mensage
-      })
+      });
     }
   },
-}
+
+  // listar avaliacao especifica
+  async listarUnicaAvaliacao(request, response) {
+    try {
+      // parametros passados via url
+      const { ava_id } = request.params;
+      // instrucao sql para listar uma avaliacao
+      const sql = 'SELECT ava_id, usu_id, far_id, nota, ava_comentario FROM avaliacao WHERE ava_id = ?;';
+      // verifica se o id foi passado
+      const values = [ava_id];
+      // executa a consulta no banco de dados
+      const [rows] = await db.query(sql, [ava_id]);
+      // verifica se ha registros retornados
+      return response.status(200).json({
+        suvesso: true,
+        mensagem: 'Lista de avaliação',
+        itens: rows.length,
+        dados: rows
+      });
+      // retorna erro caso ocorra
+    }catch (error) {
+      return response.status(500).json({
+        sucesso: false,
+        mensagem: 'Erro na requisição.',
+        dados: error.mensage
+      });
+    }
+  },
+
+};

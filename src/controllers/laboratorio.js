@@ -1,5 +1,8 @@
 const db = require('../dataBase/connection');
+const { json, response } = require('express');
 
+// Controller para gerenciar avaliações
+// Este módulo contém funções para listar, cadastrar, editar e apagar avaliações no banco de dados
 module.exports = {
 
   // Listar Laboratório
@@ -16,8 +19,8 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
-    }catch (error) {
       // retorna erro caso ocorra
+    }catch (error) {
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
@@ -44,8 +47,8 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
-    } catch (error) {
       // retorna erro caso ocorra
+    } catch (error) {
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
@@ -57,10 +60,10 @@ module.exports = {
   // Editar Laboratório
   async editarLaboratorio(request, response) {
     try {
-      // parametros passados via url
-      const { lab_id } = request.params;
       // parametros passados via corpo de requisição
       const { nome_laboratorio, lab_cnpj } = request.body;
+      // parametros passados via url
+      const { lab_id } = request.params;
       // instrução sql para edição
       const sql = 'UPDATE laboratorio SET nome_laboratorio = ?, lab_cnpj = ? WHERE lab_id = ?;';
       // definição de array com paramentros que receberão os valores do front-end
@@ -74,13 +77,13 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
-    } catch (error) {
       // retorna erro caso ocorra
+    } catch (error) {
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
         dados: error.mensage
-      })
+      });
     }
   },
 
@@ -102,13 +105,41 @@ module.exports = {
         itens: rows.length,
         dados: rows
       });
+    // retorna erro caso ocorra
     } catch (error) {
-      // retorna erro caso ocorra
       return response.status(500).json({
         sucesso: false,
         mensagem: 'Erro na requisição.',
         dados: error.mensage
-      })
+      });
     }
   },
+
+  // listar laboratorio específico
+  async listarUnicoLaboratorio(request, response) {
+    try {
+      // parametros passados via url
+      const { lab_id } = request.params;
+      // instrução sql para listar laboratorio específico
+      const sql = 'SELECT lab_id, nome_laboratorio, lab_cnpj FROM laboratorio WHERE lab_id = ?;';
+      // definição de array com paramentros que receberão os valores do front-end
+      const values = [lab_id];
+      // executa a instrução de listagem no banco de dados
+      const [rows] = await db.query(sql, values);
+      // exibe o resultado da consulta
+      return response.status(200).json({
+        sucesso: true,
+        mensagem: 'Laboratório encontrado.',
+        itens: rows.length,
+        dados: rows
+      });
+    // retorna erro caso ocorra
+    } catch (error) {
+      return response.status(500).json({
+        sucesso: false,
+        mensagem: 'Erro na requisição.',
+        dados: error.mensage
+      });
+    }
+  }
 }
