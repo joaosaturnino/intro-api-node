@@ -114,32 +114,32 @@ module.exports = {
     }
   },
 
-  // Listar uma cidade específica
-  async listarUnicaCidade(request, response) {
-    try {
-      // parmetro passado via url
-      const { cidade_id } = request.params;
-      // instrução sql para listar uma cidade especifica
-      const sql = 'SELECT cidade_id, nome_cidade, uf_sigla FROM cidade WHERE cidade_id = ?;';
-      // definição de array com parametros que receberao os valores do front-end
-      const values = [cidade_id];
-      // executa a consulta no banco de dados
-      const [rows] = await db.query(sql, values);
-      // verifica se ha registros retornados
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Cidade encontrada.',
-        itens: rows.length,
-        dados: rows
-      });
-      // retorna erro caso ocorra
-    }catch (error) {
-      return response.status(500).json({
-        sucesso: false,
-        mensagem: 'Erro na requisição.',
-        dados: error.mensage
-      });
-    }
-  },
+  // // Listar uma cidade específica
+  // async listarUnicaCidade(request, response) {
+  //   try {
+  //     // parmetro passado via url
+  //     const { cidade_id } = request.params;
+  //     // instrução sql para listar uma cidade especifica
+  //     const sql = 'SELECT cidade_id, nome_cidade, uf_sigla FROM cidade WHERE cidade_id = ?;';
+  //     // definição de array com parametros que receberao os valores do front-end
+  //     const values = [cidade_id];
+  //     // executa a consulta no banco de dados
+  //     const [rows] = await db.query(sql, values);
+  //     // verifica se ha registros retornados
+  //     return response.status(200).json({
+  //       sucesso: true,
+  //       mensagem: 'Cidade encontrada.',
+  //       itens: rows.length,
+  //       dados: rows
+  //     });
+  //     // retorna erro caso ocorra
+  //   }catch (error) {
+  //     return response.status(500).json({
+  //       sucesso: false,
+  //       mensagem: 'Erro na requisição.',
+  //       dados: error.mensage
+  //     });
+  //   }
+  // },
 
 };

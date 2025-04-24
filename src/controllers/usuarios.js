@@ -113,31 +113,31 @@ module.exports = {
     }
   },
 
-  // Listar um usuário específico
-  async listarUnicoUsuario(request, response) {
-    try {
-      // parametros passados via url
-      const { usu_id } = request.params;
-      // instrução sql para listagem de um usuário específico
-      const sql = 'SELECT usu_id, usu_nome, usu_email, usu_senha, usu_cpf, usu_tipo, cid_id FROM usuarios WHERE usu_id = ?;';
-      // definição de array com paramentros que receberão os valores do front-end
-      const values = [usu_id];
-      // executa a instrução de listagem no banco de dados
-      const [rows] = await db.query(sql, values);
-      // exibe o resultado da consulta
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Usuário encontrado.',
-        itens: rows.length,
-        dados: rows
-      });
-    // retorna erro caso ocorra
-    } catch (error) {
-      return response.status(500).json({
-        sucesso: false,
-        mensagem: 'Erro na requisição.',
-        dados: error.mensage
-      });
-    }
-  }
+  // // Listar um usuário específico
+  // async listarUnicoUsuario(request, response) {
+  //   try {
+  //     // parametros passados via url
+  //     const { usu_id } = request.params;
+  //     // instrução sql para listagem de um usuário específico
+  //     const sql = 'SELECT usu_id, usu_nome, usu_email, usu_senha, usu_cpf, usu_tipo, cid_id FROM usuarios WHERE usu_id = ?;';
+  //     // definição de array com paramentros que receberão os valores do front-end
+  //     const values = [usu_id];
+  //     // executa a instrução de listagem no banco de dados
+  //     const [rows] = await db.query(sql, values);
+  //     // exibe o resultado da consulta
+  //     return response.status(200).json({
+  //       sucesso: true,
+  //       mensagem: 'Usuário encontrado.',
+  //       itens: rows.length,
+  //       dados: rows
+  //     });
+  //   // retorna erro caso ocorra
+  //   } catch (error) {
+  //     return response.status(500).json({
+  //       sucesso: false,
+  //       mensagem: 'Erro na requisição.',
+  //       dados: error.mensage
+  //     });
+  //   }
+  // }
 }

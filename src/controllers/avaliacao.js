@@ -116,31 +116,31 @@ module.exports = {
   },
 
   // listar avaliacao especifica
-  async listarUnicaAvaliacao(request, response) {
-    try {
-      // parametros passados via url
-      const { ava_id } = request.params;
-      // instrucao sql para listar uma avaliacao
-      const sql = 'SELECT ava_id, usu_id, far_id, nota, ava_comentario FROM avaliacao WHERE ava_id = ?;';
-      // verifica se o id foi passado
-      const values = [ava_id];
-      // executa a consulta no banco de dados
-      const [rows] = await db.query(sql, [ava_id]);
-      // verifica se ha registros retornados
-      return response.status(200).json({
-        suvesso: true,
-        mensagem: 'Lista de avaliação',
-        itens: rows.length,
-        dados: rows
-      });
-      // retorna erro caso ocorra
-    }catch (error) {
-      return response.status(500).json({
-        sucesso: false,
-        mensagem: 'Erro na requisição.',
-        dados: error.mensage
-      });
-    }
-  },
+  // async listarUnicaAvaliacao(request, response) {
+  //   try {
+  //     // parametros passados via url
+  //     const { ava_id } = request.params;
+  //     // instrucao sql para listar uma avaliacao
+  //     const sql = 'SELECT ava_id, usu_id, far_id, nota, ava_comentario FROM avaliacao WHERE ava_id = ?;';
+  //     // verifica se o id foi passado
+  //     const values = [ava_id];
+  //     // executa a consulta no banco de dados
+  //     const [rows] = await db.query(sql, [ava_id]);
+  //     // verifica se ha registros retornados
+  //     return response.status(200).json({
+  //       sucesso: true,
+  //       mensagem: 'Lista de avaliação',
+  //       itens: rows.length,
+  //       dados: rows
+  //     });
+  //     // retorna erro caso ocorra
+  //   }catch (error) {
+  //     return response.status(500).json({
+  //       sucesso: false,
+  //       mensagem: 'Erro na requisição.',
+  //       dados: error.mensage
+  //     });
+  //   }
+  // },
 
 };

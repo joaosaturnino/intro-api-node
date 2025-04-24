@@ -115,31 +115,31 @@ module.exports = {
     }
   },
 
-  // Listar um único Tipo de Produto
-  async listarUnicoTipoProduto(request, response) {
-    try {
-      // parametros passados via url
-      const { tipo_id } = request.params;
-      // instrução sql para listar um único tipo de produto
-      const sql = 'SELECT tipo_id, nome_tipo FROM tipo_produto WHERE tipo_id = ?;';
-      // definição de array com paramentros que receberão os valores do front-end
-      const values = [tipo_id];
-      // executa a instrução de listagem no banco de dados
-      const [rows] = await db.query(sql, values);
-      // exibe o resultado da consulta
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Tipo de Produto encontrado.',
-        itens: rows.length,
-        dados: rows
-      });
-      // retorna erro caso ocorra
-    } catch (error) {
-      return response.status(500).json({
-        sucesso: false,
-        mensagem: 'Erro na requisição.',
-        dados: error.mensage
-      });
-    }
-  }
+  // // Listar um único Tipo de Produto
+  // async listarUnicoTipoProduto(request, response) {
+  //   try {
+  //     // parametros passados via url
+  //     const { tipo_id } = request.params;
+  //     // instrução sql para listar um único tipo de produto
+  //     const sql = 'SELECT tipo_id, nome_tipo FROM tipo_produto WHERE tipo_id = ?;';
+  //     // definição de array com paramentros que receberão os valores do front-end
+  //     const values = [tipo_id];
+  //     // executa a instrução de listagem no banco de dados
+  //     const [rows] = await db.query(sql, values);
+  //     // exibe o resultado da consulta
+  //     return response.status(200).json({
+  //       sucesso: true,
+  //       mensagem: 'Tipo de Produto encontrado.',
+  //       itens: rows.length,
+  //       dados: rows
+  //     });
+  //     // retorna erro caso ocorra
+  //   } catch (error) {
+  //     return response.status(500).json({
+  //       sucesso: false,
+  //       mensagem: 'Erro na requisição.',
+  //       dados: error.mensage
+  //     });
+  //   }
+  // }
 }

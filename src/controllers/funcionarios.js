@@ -115,31 +115,31 @@ module.exports = {
     }
   },
 
-  // listar funcionario especifico
-  async listarUnicoFuncionario(request, response) {
-    try {
-      // parametros passados via url
-      const {func_id} = request.params;
-      // instrução sql para listar funcionario especifico
-      const sql = 'SELECT func_id, cargo, usu_id FROM funcionarios WHERE func_id = ?;';
-      // definição de array com paramentros que receberão os valores do front-end
-      const values = [func_id];
-      // executa a instrução de listagem no banco de dados
-      const [rows] = await db.query(sql, values);
-      // exibe o resultado da consulta
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Funcionario encontrado.',
-        itens: rows.length,
-        dados: rows
-      });
-      // retorna erro caso ocorra
-    } catch (error) {
-      return response.status(500).json({
-        sucesso: false,
-        mensagem: 'Erro na requisição.',
-        dados: error.mensage
-      });
-    }
-  }
+  // // listar funcionario especifico
+  // async listarUnicoFuncionario(request, response) {
+  //   try {
+  //     // parametros passados via url
+  //     const {func_id} = request.params;
+  //     // instrução sql para listar funcionario especifico
+  //     const sql = 'SELECT func_id, cargo, usu_id FROM funcionarios WHERE func_id = ?;';
+  //     // definição de array com paramentros que receberão os valores do front-end
+  //     const values = [func_id];
+  //     // executa a instrução de listagem no banco de dados
+  //     const [rows] = await db.query(sql, values);
+  //     // exibe o resultado da consulta
+  //     return response.status(200).json({
+  //       sucesso: true,
+  //       mensagem: 'Funcionario encontrado.',
+  //       itens: rows.length,
+  //       dados: rows
+  //     });
+  //     // retorna erro caso ocorra
+  //   } catch (error) {
+  //     return response.status(500).json({
+  //       sucesso: false,
+  //       mensagem: 'Erro na requisição.',
+  //       dados: error.mensage
+  //     });
+  //   }
+  // }
 }

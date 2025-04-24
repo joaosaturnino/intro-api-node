@@ -115,32 +115,32 @@ module.exports = {
     }
   }, 
 
-  // listar uma forma farmaceutica especifica
-  async listarUnicaForma(request, response) {
-    try {
-      // parametro passado via url
-      const { forma_id } = request.params;
-      // instrução sql para listar uma forma farmaceutica especifica
-      const sql = 'SELECT forma_id, forma_nome FROM forma_farmaceutica WHERE forma_id = ?;';
-      // definição de array com parametros que receberão os valores do front-end
-      const values = [forma_id];
-      // executa a instrução de listagem no baanco de dados
-      const [rows] = await db.query(sql, values);
-      // verifica se há registros retornados
-      return response.status(200).json({
-        sucesso: true,
-        mensagem: 'Forma farmaceutica encontrada.',
-        itens: rows.length,
-        dados: rows
-      });
-      // retorna erro caso ocorra
-    }catch (error) {
-      return response.status(500).json({
-        sucesso: false,
-        mensagem: 'Erro na requisição.',
-        dados: error.mensage
-      });
-    }
-  },
+  // // listar uma forma farmaceutica especifica
+  // async listarUnicaForma(request, response) {
+  //   try {
+  //     // parametro passado via url
+  //     const { forma_id } = request.params;
+  //     // instrução sql para listar uma forma farmaceutica especifica
+  //     const sql = 'SELECT forma_id, forma_nome FROM forma_farmaceutica WHERE forma_id = ?;';
+  //     // definição de array com parametros que receberão os valores do front-end
+  //     const values = [forma_id];
+  //     // executa a instrução de listagem no baanco de dados
+  //     const [rows] = await db.query(sql, values);
+  //     // verifica se há registros retornados
+  //     return response.status(200).json({
+  //       sucesso: true,
+  //       mensagem: 'Forma farmaceutica encontrada.',
+  //       itens: rows.length,
+  //       dados: rows
+  //     });
+  //     // retorna erro caso ocorra
+  //   }catch (error) {
+  //     return response.status(500).json({
+  //       sucesso: false,
+  //       mensagem: 'Erro na requisição.',
+  //       dados: error.mensage
+  //     });
+  //   }
+  // },
 
 };
