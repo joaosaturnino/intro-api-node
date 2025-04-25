@@ -314,6 +314,4 @@ module.exports = {
     }
   },
 
-  
-
-}
+};

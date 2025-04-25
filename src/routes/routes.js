@@ -29,7 +29,7 @@ router.post('/cidades', CidadesController.cadastrarCidade); // Cadastrar cidades
 router.patch('/cidades/:cidade_id', CidadesController.editarCidade); // Editar cidades
 router.delete('/cidades/:cidade_id', CidadesController.apagarCidade); // Apagar cidades
 //router.get('/cidades/:cidade_id', CidadesController.listarUnicaCidade); // listar unica cidade
-router.get('/cidades/:cidade_id', ListarUnicoController.listarUnicaCidade);
+router.get('/cidades/:cidade_id', ListarUnicoController.listarUnicaCidade); // listar unica cidade
 
 // Routes para farmaceuticas
 router.get('/farmaceutica', FarmaceuticasController.listarFarmaceutica); // Listar farmaceuticas
@@ -37,7 +37,7 @@ router.post('/farmaceutica', FarmaceuticasController.cadastrarFarmaceutica); // 
 router.patch('/farmaceutica/:forma_id', FarmaceuticasController.editarFarmaceutica); // Editar farmaceuticas
 router.delete('/farmaceutica/:forma_id', FarmaceuticasController.apagarFarmaceutica); // Apagar farmaceuticas
 //router.get('/farmaceutica/:forma_id', FarmaceuticasController.listarUnicaForma); // listar unica forma farmaceutica
-router.get('/farmaceutica/:forma_id', ListarUnicoController.listarUnicaForma);
+router.get('/farmaceutica/:forma_id', ListarUnicoController.listarUnicaForma); // listar unica forma farmaceutica
 
 // Routes para farmácias
 router.get('/farmacias', FarmaciasController.listarFarmacias); // Listar farmácias
@@ -45,7 +45,7 @@ router.post('/farmacias', FarmaciasController.cadastrarFarmacias); // Cadastrar 
 router.patch('/farmacias/:farm_id', FarmaciasController.editarFarmacias); // Editar farmácias
 router.delete('/farmacias/:farm_id', FarmaciasController.apagarFarmacias); // Apagar farmácias
 //router.get('/farmacias/:farm_id', FarmaciasController.listarUnicaFarmacia); // listar unica farmacia
-router.get('/farmacias/:farm_id', ListarUnicoController.listarUnicaFarmacia);
+router.get('/farmacias/:farm_id', ListarUnicoController.listarUnicaFarmacia); // listar unica farmacia
 
 // Routes para funcionarios
 router.get('/funcionario', FuncionariosController.listarFuncionario); // Listar funcionarios
@@ -53,7 +53,7 @@ router.post('/funcionario', FuncionariosController.cadastrarFuncionario); // Cad
 router.patch('/funcionario/:func_id', FuncionariosController.editarFuncionario); // Editar funcionarios
 router.delete('/funcionario/:func_id', FuncionariosController.apagarFuncionario); // Apagar funcionarios
 //router.get('/funcionario/:func_id', FuncionariosController.listarUnicoFuncionario); // listar unico funcionario
-router.get('/funcionarios/:func_id', ListarUnicoController.listarUnicoFuncionario);
+router.get('/funcionario/:func_id', ListarUnicoController.listarUnicoFuncionario); // listar unico funcionario
 
 // Routes para laboratorio
 router.get('/laboratorio', LaboratorioController.listarLaboratorio); // Listar laboratorio
@@ -61,7 +61,7 @@ router.post('/laboratorio', LaboratorioController.cadastrarLaboratorio); // Cada
 router.patch('/laboratorio/:lab_id', LaboratorioController.editarLaboratorio); // Editar laboratorio
 router.delete('/laboratorio/:lab_id', LaboratorioController.apagarLaboratorio); // Apagar laboratorio
 //router.get('/laboratorio/:lab_id', LaboratorioController.listarUnicoLaboratorio); // listar unico laboratorio
-router.get('/laboratorio/:lab_id', ListarUnicoController.listarUnicoLaboratorio);
+router.get('/laboratorio/:lab_id', ListarUnicoController.listarUnicoLaboratorio); // listar unico laboratorio
 
 // Routes para medicamentos
 router.get('/medicamentos', MedicamentosController.listarMedicamentos); // Listar medicamentos
@@ -69,7 +69,7 @@ router.post('/medicamentos', MedicamentosController.cadastrarMedicamentos); // C
 router.patch('/medicamentos/:med_id', MedicamentosController.editarMedicamentos); // Editar medicamentos
 router.delete('/medicamentos/:med_id', MedicamentosController.apagarMedicamentos); // Apagar medicamentos
 //router.get('/medicamentos/:med_id', MedicamentosController.listarUnicoMedicamento); // listar unico medicamento
-router.get('/medicamentos/:med_id', ListarUnicoController.listarUnicoMedicamento);
+router.get('/medicamentos/:med_id', ListarUnicoController.listarUnicoMedicamento); // listar unico medicamento
 
 // Routes para precos medicamentos
 router.get('/medpreco', MedPrecoController.listarMedPreco); // Listar precos medicamentos
@@ -77,7 +77,7 @@ router.post('/medpreco', MedPrecoController.cadastrarMedPreco); // Cadastrar pre
 router.patch('/medpreco/:medpreco_id', MedPrecoController.editarMedPreco); // Editar precos medicamentos
 router.delete('/medpreco/:medpreco_id', MedPrecoController.apagarMedPreco); // Apagar precos medicamentos
 //router.get('/medpreco/:medpreco_id', MedPrecoController.listarUnicoMedPreco); // listar unico preco medicamento
-router.get('/medpreco/:medpreco_id', ListarUnicoController.listarUnicoMedPreco);
+router.get('/medpreco/:medpreco_id', ListarUnicoController.listarUnicoMedPreco); // listar unico preço medicamento
 
 // Routes para promoções
 router.get('/promocoes', PromocoesController.listarPromocoes); // Listar promoções
@@ -85,7 +85,7 @@ router.post('/promocoes', PromocoesController.cadastrarPromocoes); // Cadastrar 
 router.patch('/promocoes/:promo_id', PromocoesController.editarPromocoes); // Editar promoções
 router.delete('/promocoes/:promo_id', PromocoesController.apagarPromocoes); // Apagar promoções
 //router.get('/promocoes/:promo_id', PromocoesController.listarUnicaPromocao); // listar unica promocao
-router.get('/promocoes/:promo_id', ListarUnicoController.listarUnicaPromocao);
+router.get('/promocoes/:promo_id', ListarUnicoController.listarUnicaPromocao); // listar unica promoção
 
 // Routes para tipos de produtos
 router.get('/tipoproduto', TiposProdutoController.listarTipoProduto); // Listar tipos de produtos
@@ -93,7 +93,7 @@ router.post('/tipoproduto', TiposProdutoController.cadastrarTipoProduto); // Cad
 router.patch('/tipoproduto/:tipo_id', TiposProdutoController.editarTipoProduto); // Editar tipos de produtos
 router.delete('/tipoproduto/:tipo_id', TiposProdutoController.apagarTipoProduto); // Apagar tipos de produtos
 //router.get('/tipoproduto/:tipo_id', TiposProdutoController.listarUnicoTipoProduto); // listar unico tipo produto
-router.get('/tipoproduto/:tipo_id', ListarUnicoController.listarUnicoTipoProduto);
+router.get('/tipoproduto/:tipo_id', ListarUnicoController.listarUnicoTipoProduto); // listar unico tipo de produto
 
 // Routes para usuario
 router.get('/usuarios', UsuarioController.listarUsuario); // Listar usuarios
@@ -101,6 +101,6 @@ router.post('/usuarios', UsuarioController.cadastrarUsuario); // Cadastrar usuar
 router.patch('/usuarios/:usu_id', UsuarioController.editarUsuario); // Editar usuarios
 router.delete('/usuarios/:usu_id', UsuarioController.apagarUsuario); // Apagar usuarios
 //router.get('/usuarios/:usu_id', UsuarioController.listarUnicoUsuario); // listar unico usuario
-router.get('/usuarios/:usu_id', ListarUnicoController.listarUnicoUsuario);
+router.get('/usuarios/:usu_id', ListarUnicoController.listarUnicoUsuario); // listar unico usuario
 
 module.exports = router;

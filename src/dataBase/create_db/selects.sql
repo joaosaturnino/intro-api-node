@@ -13,7 +13,8 @@ FROM forma_farmaceutica; -- ok
 SELECT func_id, cargo, usu_id
 FROM funcionarios; -- ok
 
-SELECT lab_id, nome_laboratorio, lab_cnpj
+S
+ELECT lab_id, nome_laboratorio, lab_cnpj
 FROM laboratorio; -- ok
 
 SELECT med_id, med_nome, med_dosagem, med_quantidade, forma_id,
