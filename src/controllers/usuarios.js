@@ -113,6 +113,33 @@ module.exports = {
     }
   },
 
+  async login(request, response) {
+    try {
+      // parametros passados via copo de requisição
+      const { usu_email, usu_senha } = request.body;
+      // instrução sql para validação de login
+      const sql = `SELECT usu_id, usu_nome, usu_tipo 
+      FROM  usuarios WHERE usu_email = ? AND usu_senha = ?;`;
+      // definição de array com parametros que receberão os valores do front-end
+      const values = [usu_email, usu_senha];
+      // executa a instrução de validação no banco de dados
+      const usuarios = await db.query(sql, values);
+      const nItens = usuarios[0].length;
+
+      // verifica se o usuario existe
+      if (nItens < 1) {
+        return response.status(403).json({
+          sucesso: false,
+          mensagem: 'Login e/ou senha invalido.',
+          dados: null
+        });
+      }
+
+      // exibe o resultado da consulta
+      return.status(200).json
+    }
+  }
+
   // // Listar um usuário específico
   // async listarUnicoUsuario(request, response) {
   //   try {
