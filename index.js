@@ -9,6 +9,9 @@ app.use(cors());
 app.use(express.json());
 app.use(router);
 
+// tornando as pastas public acessivel para imagens
+app.use('/publique', express.static('public'));
+
 const porta = process.env.PORT || 3333;
 
 app.listen(porta, () => {

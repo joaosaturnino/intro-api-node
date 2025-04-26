@@ -14,6 +14,7 @@ const PromocoesController = require('../controllers/promocoes');
 const TiposProdutoController = require('../controllers/tipoproduto');
 const UsuarioController = require('../controllers/usuarios');
 const ListarUnicoController = require('../controllers/listagem');
+const upload = require('../middlewares/uploadImage'); // middleware para upload de imagem
 
 // Routes para avaliacao
 router.get('/avaliacao', AvaliacaoController.listarAvaliacao); // Listar avaliacao
@@ -70,6 +71,7 @@ router.patch('/medicamentos/:med_id', MedicamentosController.editarMedicamentos)
 router.delete('/medicamentos/:med_id', MedicamentosController.apagarMedicamentos); // Apagar medicamentos
 //router.get('/medicamentos/:med_id', MedicamentosController.listarUnicoMedicamento); // listar unico medicamento
 router.get('/medicamentos/:med_id', ListarUnicoController.listarUnicoMedicamento); // listar unico medicamento
+router.post('/medicamentos', upload.single('img'), MedicamentosController.cadastrarMedicamentos); // Upload imagem medicamento
 
 // Routes para precos medicamentos
 router.get('/medpreco', MedPrecoController.listarMedPreco); // Listar precos medicamentos
@@ -102,5 +104,6 @@ router.patch('/usuarios/:usu_id', UsuarioController.editarUsuario); // Editar us
 router.delete('/usuarios/:usu_id', UsuarioController.apagarUsuario); // Apagar usuarios
 //router.get('/usuarios/:usu_id', UsuarioController.listarUnicoUsuario); // listar unico usuario
 router.get('/usuarios/:usu_id', ListarUnicoController.listarUnicoUsuario); // listar unico usuario
+router.post('/usuarios/login', UsuarioController.login); // login usuario
 
 module.exports = router;

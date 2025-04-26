@@ -136,9 +136,19 @@ module.exports = {
       }
 
       // exibe o resultado da consulta
-      return.status(200).json
+      return response.status(200).json({
+        sucesso: true,
+        mensagem: 'Login realizado com sucesso.',
+        dados: usuarios[0]
+      });
+    }catch (error) {
+      return response.status(500).json({
+        sucesso: false,
+        mensagem: 'Erro na requisição.',
+        dados: error.mensage
+      });
     }
-  }
+  },
 
   // // Listar um usuário específico
   // async listarUnicoUsuario(request, response) {
