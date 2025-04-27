@@ -14,7 +14,9 @@ const PromocoesController = require('../controllers/promocoes');
 const TiposProdutoController = require('../controllers/tipoproduto');
 const UsuarioController = require('../controllers/usuarios');
 const ListarUnicoController = require('../controllers/listagem');
-const upload = require('../middlewares/uploadImage'); // middleware para upload de imagem
+
+const upload = require('../../middlewares/uploadImageMedicamentos'); // Importando o middleware de upload de imagem
+
 
 // Routes para avaliacao
 router.get('/avaliacao', AvaliacaoController.listarAvaliacao); // Listar avaliacao
@@ -26,6 +28,7 @@ router.get('/avaliacao/:ava_id', ListarUnicoController.listarUnicaAvaliacao); //
 
 // Routes para cidades
 router.get('/cidades', CidadesController.listarCidade); // Listar cidades
+router.get('/ufs', CidadesController.listarUfs); // Listar ufs
 router.post('/cidades', CidadesController.cadastrarCidade); // Cadastrar cidades
 router.patch('/cidades/:cidade_id', CidadesController.editarCidade); // Editar cidades
 router.delete('/cidades/:cidade_id', CidadesController.apagarCidade); // Apagar cidades
@@ -66,12 +69,11 @@ router.get('/laboratorio/:lab_id', ListarUnicoController.listarUnicoLaboratorio)
 
 // Routes para medicamentos
 router.get('/medicamentos', MedicamentosController.listarMedicamentos); // Listar medicamentos
-router.post('/medicamentos', MedicamentosController.cadastrarMedicamentos); // Cadastrar medicamentos
+router.post('/medicamentos', upload.single('img'), MedicamentosController.cadastrarMedicamentos); // Cadastrar medicamentos
 router.patch('/medicamentos/:med_id', MedicamentosController.editarMedicamentos); // Editar medicamentos
 router.delete('/medicamentos/:med_id', MedicamentosController.apagarMedicamentos); // Apagar medicamentos
 //router.get('/medicamentos/:med_id', MedicamentosController.listarUnicoMedicamento); // listar unico medicamento
 router.get('/medicamentos/:med_id', ListarUnicoController.listarUnicoMedicamento); // listar unico medicamento
-router.post('/medicamentos', upload.single('img'), MedicamentosController.cadastrarMedicamentos); // Upload imagem medicamento
 
 // Routes para precos medicamentos
 router.get('/medpreco', MedPrecoController.listarMedPreco); // Listar precos medicamentos

@@ -1,6 +1,33 @@
 const db = require('../dataBase/connection');
 const { json, response } = require('express');
 
+//var fs = require('fs-extra');
+
+function geraUrl (e) {
+
+  //garantir que valores em branco carreguem algo
+  let img = med_img ? med_img : 'sem_imagem.jpg';
+  // verifica se imagem existe
+  if (!fs.esxistsSync('./public/upload/medicamentos/' + img)) {
+    img = 'sem_imagem.jpg';
+  }
+
+  const medicamentos = {
+    med_id,
+    med_nome,
+    med_dosagem,
+    med_quantidade,
+    forma_id,
+    descricao,
+    lab_id,
+    med_img: 'http://192.168.200.27/upload/medicamentos/' + img,
+    tipo_id,
+    
+  }
+  return medicamentos;
+  
+}
+
 // Controller para gerenciar medicamentos
 // Este módulo contém funções para listar, cadastrar, editar e apagar medicamentos no banco de dados
 module.exports = {
@@ -9,16 +36,29 @@ module.exports = {
   async listarMedicamentos(request, response) {
 
     try {
+      const { med_nome } = request.body;
+      const medPesq = med_nome ? `%${med_nome}%` : `%%`;
       // instrução sql para listar medicamentos
-      const sql = 'SELECT med_id, med_nome, med_dosagem, med_quantidade, forma_id descricao, lab_id, med_img, tipo_id FROM medicamento;';
+      const sql = `SELECT med_id, med_nome, med_dosagem, med_quantidade, 
+      forma_id descricao, lab_id, med_img, tipo_id 
+      FROM medicamento 
+      WHERE med_nome like ?;`;
+
+      const values = [medPesq];
       // executa a instrução de listagem no banco de dados
-      const [rows] = await db.query(sql);
+      const [rows] = await db.query(sql, values);
+      //const medicamentos = await db.query(sql, values);
+      //const nItens = medicamentos[0].length;
+
+      // chamada para montar a url da imagem
+      //const resultado = medicamentos[0].map(geraUrl);
       // exibe o resultado da consulta
       return response.status(200).json({
         sucesso: true,
         mensagem: 'Lista de medicamentos',
         itens: rows.length,
-        dados: rows
+        dados: rows, //medicamentos[0], // , medicamentos, //, resultado
+        //nItens
       });
       // retorna erro caso ocorra
     }catch (error) {
