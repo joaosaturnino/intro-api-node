@@ -14,6 +14,8 @@ const PromocoesController = require('../controllers/promocoes');
 const TiposProdutoController = require('../controllers/tipoproduto');
 const UsuarioController = require('../controllers/usuarios');
 const ListarUnicoController = require('../controllers/listagem');
+const ListarParametroController = require('../controllers/parametros');
+const ListarInnerController = require('../controllers/innerjoin'); // Importando o controller de listagem unicas
 
 const upload = require('../../middlewares/uploadImageMedicamentos'); // Importando o middleware de upload de imagem
 
@@ -34,6 +36,7 @@ router.patch('/cidades/:cidade_id', CidadesController.editarCidade); // Editar c
 router.delete('/cidades/:cidade_id', CidadesController.apagarCidade); // Apagar cidades
 //router.get('/cidades/:cidade_id', CidadesController.listarUnicaCidade); // listar unica cidade
 router.get('/cidades/:cidade_id', ListarUnicoController.listarUnicaCidade); // listar unica cidade
+router.get('/cidade', ListarParametroController.listarCidadeParametro); // Listar cidades com parâmetros de pesquisa
 
 // Routes para farmaceuticas
 router.get('/farmaceutica', FarmaceuticasController.listarFarmaceutica); // Listar farmaceuticas
@@ -42,6 +45,7 @@ router.patch('/farmaceutica/:forma_id', FarmaceuticasController.editarFarmaceuti
 router.delete('/farmaceutica/:forma_id', FarmaceuticasController.apagarFarmaceutica); // Apagar farmaceuticas
 //router.get('/farmaceutica/:forma_id', FarmaceuticasController.listarUnicaForma); // listar unica forma farmaceutica
 router.get('/farmaceutica/:forma_id', ListarUnicoController.listarUnicaForma); // listar unica forma farmaceutica
+router.get('/farmaceuticas', ListarParametroController.listarFormasParametros); // Listar farmaceuticas com parâmetros de pesquisa
 
 // Routes para farmácias
 router.get('/farmacias', FarmaciasController.listarFarmacias); // Listar farmácias
@@ -68,12 +72,14 @@ router.delete('/laboratorio/:lab_id', LaboratorioController.apagarLaboratorio); 
 router.get('/laboratorio/:lab_id', ListarUnicoController.listarUnicoLaboratorio); // listar unico laboratorio
 
 // Routes para medicamentos
-router.get('/medicamentos', MedicamentosController.listarMedicamentos); // Listar medicamentos
+//router.get('/medicamentos', MedicamentosController.listarMedicamentos); // Listar medicamentos
 router.post('/medicamentos', upload.single('img'), MedicamentosController.cadastrarMedicamentos); // Cadastrar medicamentos
 router.patch('/medicamentos/:med_id', MedicamentosController.editarMedicamentos); // Editar medicamentos
 router.delete('/medicamentos/:med_id', MedicamentosController.apagarMedicamentos); // Apagar medicamentos
 //router.get('/medicamentos/:med_id', MedicamentosController.listarUnicoMedicamento); // listar unico medicamento
 router.get('/medicamentos/:med_id', ListarUnicoController.listarUnicoMedicamento); // listar unico medicamento
+router.get('/medicamento', ListarParametroController.listarMedicamentosParametros); // Listar medicamentos com parâmetros de pesquisa
+router.get('/medicamento/inner', ListarInnerController.listarMedicamentoInner); // Listar medicamentos com inner join
 
 // Routes para precos medicamentos
 router.get('/medpreco', MedPrecoController.listarMedPreco); // Listar precos medicamentos

@@ -32,33 +32,22 @@ function geraUrl (e) {
 // Este módulo contém funções para listar, cadastrar, editar e apagar medicamentos no banco de dados
 module.exports = {
 
-  // Listar todos os medicamentos
+  //Listar todos os medicamentos
   async listarMedicamentos(request, response) {
-
     try {
-      const { med_nome } = request.body;
-      const medPesq = med_nome ? `%${med_nome}%` : `%%`;
-      // instrução sql para listar medicamentos
-      const sql = `SELECT med_id, med_nome, med_dosagem, med_quantidade, 
+      // indtrução sql para listar medicamentos
+      const sql = `SELECT 
+      med_id, med_nome, med_dosagem, med_quantidade, 
       forma_id descricao, lab_id, med_img, tipo_id 
-      FROM medicamento 
-      WHERE med_nome like ?;`;
-
-      const values = [medPesq];
+      FROM medicamento;`;
       // executa a instrução de listagem no banco de dados
-      const [rows] = await db.query(sql, values);
-      //const medicamentos = await db.query(sql, values);
-      //const nItens = medicamentos[0].length;
-
-      // chamada para montar a url da imagem
-      //const resultado = medicamentos[0].map(geraUrl);
+      const [rows] = await db.query(sql);
       // exibe o resultado da consulta
       return response.status(200).json({
         sucesso: true,
         mensagem: 'Lista de medicamentos',
         itens: rows.length,
-        dados: rows, //medicamentos[0], // , medicamentos, //, resultado
-        //nItens
+        dados: rows
       });
       // retorna erro caso ocorra
     }catch (error) {
@@ -69,6 +58,40 @@ module.exports = {
       });
     }
   },
+
+  // async listarMedicamentosParametros(request, response) {
+
+  //   try {
+  //     const { med_nome } = request.body;
+  //     const medPesq = med_nome ? `%${med_nome}%` : `%%`;
+  //     // instrução sql para listar medicamentos
+  //     const sql = 'SELECT med_id, med_nome, med_dosagem, med_quantidade, forma_id descricao, lab_id, med_img, tipo_id FROM medicamento WHERE med_nome like ?;';
+
+  //     const values = [medPesq];
+  //     // executa a instrução de listagem no banco de dados
+  //     const [rows] = await db.query(sql, values);
+  //     const medicamentos = await db.query(sql, values);
+  //     const nItens = medicamentos[0].length;
+
+  //     // chamada para montar a url da imagem
+  //     //const resultado = medicamentos[0].map(geraUrl);
+  //     // exibe o resultado da consulta
+  //     return response.status(200).json({
+  //       sucesso: true,
+  //       mensagem: 'Lista de medicamentos',
+  //       itens: rows.length,
+  //       dados: rows, //medicamentos[0], // , medicamentos, //, resultado
+  //       nItens
+  //     });
+  //     // retorna erro caso ocorra
+  //   }catch (error) {
+  //     return response.status(500).json({
+  //       sucesso: false,
+  //       mensagem: 'Erro na requisição.',
+  //       dados: error.mensage
+  //     });
+  //   }
+  // },
 
   // Cadastrar medicamentos
   async cadastrarMedicamentos(request, response) {
