@@ -1,8 +1,6 @@
 const db = require('../dataBase/connection');
 const { json, response } = require('express');
 
-// Controler para gerenciar listagens unicas
-// Este modulo contem funcoes para listar um unico item no banco de dados
 module.exports = {
 
   // listar medicamento especifico

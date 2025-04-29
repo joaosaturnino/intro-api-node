@@ -314,4 +314,29 @@ module.exports = {
     }
   },
 
+  async listarLimitePromocao(request, response) {
+    try {
+      const sql = `SELECT promo_id, farm_id, med_id, promo_desconto, promo_inicio, promo_fim
+      FROM promocao
+      WHERE farm_id = 1
+      ORDER BY RAND()
+      LIMIT 3;`;
+
+      const promo = await db.query(sql);
+      const nItens = promo[0].length;
+      return response.status(200).json({
+        sucesso: true,
+        mensagem: 'Itens na promoção',
+        dados: promo[0],
+        nItens
+      });
+    }catch (error) {
+      return response.status(500).json({
+        sucesso: false,
+        mensagem: 'Erro na requisição.',
+        dados: error.mensagem
+      });
+    }
+  },
+
 };

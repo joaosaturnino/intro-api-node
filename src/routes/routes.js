@@ -96,7 +96,7 @@ router.patch('/promocoes/:promo_id', PromocoesController.editarPromocoes); // Ed
 router.delete('/promocoes/:promo_id', PromocoesController.apagarPromocoes); // Apagar promoções
 //router.get('/promocoes/:promo_id', PromocoesController.listarUnicaPromocao); // listar unica promocao
 router.get('/promocoes/:promo_id', ListarUnicoController.listarUnicaPromocao); // listar unica promoção
-
+router.get('/promocao/promocoes', ListarUnicoController.listarLimitePromocao);
 // Routes para tipos de produtos
 router.get('/tipoproduto', TiposProdutoController.listarTipoProduto); // Listar tipos de produtos
 router.post('/tipoproduto', TiposProdutoController.cadastrarTipoProduto); // Cadastrar tipos de produtos
