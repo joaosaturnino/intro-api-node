@@ -37,6 +37,7 @@ router.delete('/cidades/:cidade_id', CidadesController.apagarCidade); // Apagar 
 //router.get('/cidades/:cidade_id', CidadesController.listarUnicaCidade); // listar unica cidade
 router.get('/cidades/:cidade_id', ListarUnicoController.listarUnicaCidade); // listar unica cidade
 router.get('/cidade', ListarParametroController.listarCidadeParametro); // Listar cidades com parâmetros de pesquisa
+router.get('/cidade/cidadelimit', ListarUnicoController.listarLimiteCidade); // Listar cidades com limite de pesquisa
 
 // Routes para farmaceuticas
 router.get('/farmaceutica', FarmaceuticasController.listarFarmaceutica); // Listar farmaceuticas
@@ -97,6 +98,7 @@ router.delete('/promocoes/:promo_id', PromocoesController.apagarPromocoes); // A
 //router.get('/promocoes/:promo_id', PromocoesController.listarUnicaPromocao); // listar unica promocao
 router.get('/promocoes/:promo_id', ListarUnicoController.listarUnicaPromocao); // listar unica promoção
 router.get('/promocao/promocoes', ListarUnicoController.listarLimitePromocao);
+
 // Routes para tipos de produtos
 router.get('/tipoproduto', TiposProdutoController.listarTipoProduto); // Listar tipos de produtos
 router.post('/tipoproduto', TiposProdutoController.cadastrarTipoProduto); // Cadastrar tipos de produtos

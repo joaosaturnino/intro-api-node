@@ -318,9 +318,8 @@ module.exports = {
     try {
       const sql = `SELECT promo_id, farm_id, med_id, promo_desconto, promo_inicio, promo_fim
       FROM promocao
-      WHERE farm_id = 1
       ORDER BY RAND()
-      LIMIT 3;`;
+      LIMIT 4;`;
 
       const promo = await db.query(sql);
       const nItens = promo[0].length;
@@ -328,6 +327,30 @@ module.exports = {
         sucesso: true,
         mensagem: 'Itens na promoção',
         dados: promo[0],
+        nItens
+      });
+    }catch (error) {
+      return response.status(500).json({
+        sucesso: false,
+        mensagem: 'Erro na requisição.',
+        dados: error.mensagem
+      });
+    }
+  },
+
+  async listarLimiteCidade(request, response) {
+    try {
+      const sql = `SELECT cidade_id, nome_cidade, uf_sigla
+      FROM cidade
+      ORDER BY RAND()
+      LIMIT 10;`;
+      
+      const cida = await db.query(sql);
+      const nItens = cida[0].length;
+      return response.status(200).json({
+        sucesso: true,
+        mensagem: 'Cidades encontradas',
+        dados: cida[0],
         nItens
       });
     }catch (error) {
