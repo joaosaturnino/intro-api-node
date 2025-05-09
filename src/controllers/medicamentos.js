@@ -196,6 +196,15 @@ module.exports = {
       const values = [med_id];
       // executa a instrução de apagar no banco de dados
       const [rows] = await db.query(sql, values);
+
+      if (rows.affectedRows === 0) {
+        return response.status(404).json({
+          sucesso: false,
+          mensagem: "Medicamento ${med_id} não encontrado.",
+          dados: null,
+        });
+      }
+
       // exibe o resultado da consulta
       return response.status(200).json({
         sucesso: true,
