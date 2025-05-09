@@ -33,8 +33,8 @@ module.exports = {
     try {
       // indtrução sql para listar medicamentos
       const sql = `SELECT 
-      med_id, med_nome, med_dosagem, med_quantidade, 
-      forma_id, descricao, lab_id, med_img, tipo_id 
+      e.med_id, e.med_nome, e.med_e.dosagem, e.med_quantidade, 
+      e.forma_id, e.descricao, e.lab_id, e.med_img, e.tipo_id 
       FROM medicamento;`;
       // executa a instrução de listagem no banco de dados
       const [rows] = await db.query(sql);
