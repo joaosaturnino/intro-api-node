@@ -31,66 +31,33 @@ module.exports = {
   //Listar todos os medicamentos
   async listarMedicamentos(request, response) {
     try {
-      // indtrução sql para listar medicamentos
-      const sql = `SELECT 
-      e.med_id, e.med_nome, e.med_e.dosagem, e.med_quantidade, 
-      e.forma_id, e.descricao, e.lab_id, e.med_img, e.tipo_id 
-      FROM medicamento;`;
-      // executa a instrução de listagem no banco de dados
-      const [rows] = await db.query(sql);
+      // Instrução SQL básica para listar todos os medicamentos
+      const sql = `
+        SELECT 
+          med_id, med_nome, med_dosagem, med_quantidade, 
+          forma_id, descricao, lab_id, med_img, tipo_id 
+        FROM medicamento;
+      `;
 
-      //chamada para montar url
-      const resultado = medicamento[0].map(geraUrl);
-      // exibe o resultado da consulta
+      // Executa a consulta no banco de dados
+      const [medicamentos] = await db.query(sql);
+
+      // Retorna os medicamentos encontrados
       return response.status(200).json({
         sucesso: true,
         mensagem: "Lista de medicamentos",
-        itens: rows.length,
-        dados: resultado,
+        dados: medicamentos,
+        nItens: medicamentos.length,
       });
-      // retorna erro caso ocorra
     } catch (error) {
+      // Retorna erro caso ocorra
       return response.status(500).json({
         sucesso: false,
         mensagem: "Erro na requisição.",
-        dados: error.mensage,
+        dados: error.message,
       });
     }
   },
-
-  // async listarMedicamentosParametros(request, response) {
-
-  //   try {
-  //     const { med_nome } = request.body;
-  //     const medPesq = med_nome ? `%${med_nome}%` : `%%`;
-  //     // instrução sql para listar medicamentos
-  //     const sql = 'SELECT med_id, med_nome, med_dosagem, med_quantidade, forma_id descricao, lab_id, med_img, tipo_id FROM medicamento WHERE med_nome like ?;';
-
-  //     const values = [medPesq];
-  //     // executa a instrução de listagem no banco de dados
-  //     const [rows] = await db.query(sql, values);
-  //     const medicamentos = await db.query(sql, values);
-  //     const nItens = medicamentos[0].length;
-
-  //     // chamada para montar a url da imagem
-  //     //const resultado = medicamentos[0].map(geraUrl);
-  //     // exibe o resultado da consulta
-  //     return response.status(200).json({
-  //       sucesso: true,
-  //       mensagem: 'Lista de medicamentos',
-  //       itens: rows.length,
-  //       dados: rows, //medicamentos[0], // , medicamentos, //, resultado
-  //       nItens
-  //     });
-  //     // retorna erro caso ocorra
-  //   }catch (error) {
-  //     return response.status(500).json({
-  //       sucesso: false,
-  //       mensagem: 'Erro na requisição.',
-  //       dados: error.mensage
-  //     });
-  //   }
-  // },
 
   // Cadastrar medicamentos
   async cadastrarMedicamentos(request, response) {
@@ -221,32 +188,4 @@ module.exports = {
       });
     }
   },
-
-  // // listar medicamento especifico
-  // async listarUnicoMedicamento(request, response) {
-  //   try {
-  //     // parametros passados via url
-  //     const { med_id } = request.params;
-  //     // instrução sql para listar medicamento especifico
-  //     const sql = 'SELECT med_id, med_nome, med_dosagem, med_quantidade, forma_id descricao, lab_id, med_img, tipo_id FROM medicamento WHERE med_id = ?;';
-  //     // definição de array com paramentros que receberão os valores do front-end
-  //     const values = [med_id];
-  //     // executa a instrução de listagem no banco de dados
-  //     const [rows] = await db.query(sql, values);
-  //     // exibe o resultado da consulta
-  //     return response.status(200).json({
-  //       sucesso: true,
-  //       mensagem: 'Medicamento encontrado.',
-  //       itens: rows.length,
-  //       dados: rows
-  //     });
-  //   // retorna erro caso ocorra
-  //   } catch (error) {
-  //     return response.status(500).json({
-  //       sucesso: false,
-  //       mensagem: 'Erro na requisição.',
-  //       dados: error.mensage
-  //     });
-  //   }
-  // }
 };
