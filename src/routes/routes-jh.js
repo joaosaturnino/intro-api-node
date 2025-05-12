@@ -1,4 +1,20 @@
+const express = require("express");
+const router = express.Router();
 
+// Importando os controllers
+
+const CidadesController = require("../controllers/cidades");
+
+const FarmaciasController = require("../controllers/farmacias");
+
+const MedicamentosController = require("../controllers/medicamentos");
+const MedPrecoController = require("../controllers/medpreco");
+const PromocoesController = require("../controllers/promocoes");
+const TiposProdutoController = require("../controllers/tipoproduto");
+
+const ListarUnicoController = require("../controllers/listagem");
+const ListarParametroController = require("../controllers/parametros");
+const ListarInnerController = require("../controllers/innerjoin"); // Importando o controller de listagem unicas
 // Routes para cidades
 router.get("/cidades", CidadesController.listarCidade); // Listar cidades
 router.get("/ufs", CidadesController.listarUfs); // Listar ufs
@@ -19,7 +35,7 @@ router.delete("/farmacias/:farm_id", FarmaciasController.apagarFarmacias); // Ap
 router.get("/farmacias/:farm_id", ListarUnicoController.listarUnicaFarmacia); // listar unica farmacia
 
 // Routes para medicamentos
-router.get('/medicamentos', MedicamentosController.listarMedicamentos); // Listar medicamentos
+router.get("/medicamentos", MedicamentosController.listarMedicamentos); // Listar medicamentos
 // Cadastrar medicamentos
 router.patch(
   "/medicamentos/:med_id",
