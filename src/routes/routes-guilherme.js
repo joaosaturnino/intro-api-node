@@ -5,7 +5,6 @@ const router = express.Router();
 
 const AvaliacaoController = require('../controllers/avaliacao');
 const LaboratorioController = require('../controllers/laboratorio');
-const LoginController = require('../controllers/login');
 
 // Routes para avaliacao
 router.get('/avaliacao', AvaliacaoController.listarAvaliacao); // Listar avaliacao
