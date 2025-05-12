@@ -2,30 +2,28 @@ const express = require("express");
 const router = express.Router();
 
 // Importando os controllers
-const AvaliacaoController = require("../controllers/avaliacao");
+// const AvaliacaoController = require("../controllers/avaliacao");
 const CidadesController = require("../controllers/cidades");
-const FarmaceuticasController = require("../controllers/farmaceuticas");
+// const FarmaceuticasController = require("../controllers/farmaceuticas");
 const FarmaciasController = require("../controllers/farmacias");
-const FuncionariosController = require("../controllers/funcionarios");
-const LaboratorioController = require("../controllers/laboratorio");
+// const FuncionariosController = require("../controllers/funcionarios");
+// const LaboratorioController = require("../controllers/laboratorio");
 const MedicamentosController = require("../controllers/medicamentos");
 const MedPrecoController = require("../controllers/medpreco");
 const PromocoesController = require("../controllers/promocoes");
 const TiposProdutoController = require("../controllers/tipoproduto");
-const UsuarioController = require("../controllers/usuarios");
+// const UsuarioController = require("../controllers/usuarios");
 const ListarUnicoController = require("../controllers/listagem");
 const ListarParametroController = require("../controllers/parametros");
 const ListarInnerController = require("../controllers/innerjoin"); // Importando o controller de listagem unicas
 
-const upload = require("../../middlewares/uploadImageMedicamentos"); // Importando o middleware de upload de imagem
-
-// Routes para avaliacao
-router.get("/avaliacao", AvaliacaoController.listarAvaliacao); // Listar avaliacao
-router.post("/avaliacao", AvaliacaoController.cadastrarAvaliacao); // Cadastrar avaliacao
-router.patch("/avaliacao/:ava_id", AvaliacaoController.editarAvaliacao); // Editar avaliacao
-router.delete("/avaliacao/:ava_id", AvaliacaoController.apagarAvaliacao); // Apagar avaliacao
-// router.get('/avaliacao/:ava_id', AvaliacaoController.listarUnicaAvaliacao); // Listar unica avaliacao
-router.get("/avaliacao/:ava_id", ListarUnicoController.listarUnicaAvaliacao); // listar unica avaliacao
+// // Routes para avaliacao
+// router.get("/avaliacao", AvaliacaoController.listarAvaliacao); // Listar avaliacao
+// router.post("/avaliacao", AvaliacaoController.cadastrarAvaliacao); // Cadastrar avaliacao
+// router.patch("/avaliacao/:ava_id", AvaliacaoController.editarAvaliacao); // Editar avaliacao
+// router.delete("/avaliacao/:ava_id", AvaliacaoController.apagarAvaliacao); // Apagar avaliacao
+// // router.get('/avaliacao/:ava_id', AvaliacaoController.listarUnicaAvaliacao); // Listar unica avaliacao
+// router.get("/avaliacao/:ava_id", ListarUnicoController.listarUnicaAvaliacao); // listar unica avaliacao
 
 // Routes para cidades
 router.get("/cidades", CidadesController.listarCidade); // Listar cidades
@@ -38,20 +36,20 @@ router.get("/cidades/:cidade_id", ListarUnicoController.listarUnicaCidade); // l
 router.get("/cidade", ListarParametroController.listarCidadeParametro); // Listar cidades com parâmetros de pesquisa
 router.get("/cidade/cidadelimit", ListarUnicoController.listarLimiteCidade); // Listar cidades com limite de pesquisa
 
-// Routes para farmaceuticas
-router.get("/farmaceutica", FarmaceuticasController.listarFarmaceutica); // Listar farmaceuticas
-router.post("/farmaceutica", FarmaceuticasController.cadastrarFarmaceutica); // Cadastrar farmaceuticas
-router.patch(
-  "/farmaceutica/:forma_id",
-  FarmaceuticasController.editarFarmaceutica
-); // Editar farmaceuticas
-router.delete(
-  "/farmaceutica/:forma_id",
-  FarmaceuticasController.apagarFarmaceutica
-); // Apagar farmaceuticas
-//router.get('/farmaceutica/:forma_id', FarmaceuticasController.listarUnicaForma); // listar unica forma farmaceutica
-router.get("/farmaceutica/:forma_id", ListarUnicoController.listarUnicaForma); // listar unica forma farmaceutica
-router.get("/farmaceuticas", ListarParametroController.listarFormasParametros); // Listar farmaceuticas com parâmetros de pesquisa
+// // Routes para farmaceuticas
+// router.get("/farmaceutica", FarmaceuticasController.listarFarmaceutica); // Listar farmaceuticas
+// router.post("/farmaceutica", FarmaceuticasController.cadastrarFarmaceutica); // Cadastrar farmaceuticas
+// router.patch(
+//   "/farmaceutica/:forma_id",
+//   FarmaceuticasController.editarFarmaceutica
+// ); // Editar farmaceuticas
+// router.delete(
+//   "/farmaceutica/:forma_id",
+//   FarmaceuticasController.apagarFarmaceutica
+// ); // Apagar farmaceuticas
+// //router.get('/farmaceutica/:forma_id', FarmaceuticasController.listarUnicaForma); // listar unica forma farmaceutica
+// router.get("/farmaceutica/:forma_id", ListarUnicoController.listarUnicaForma); // listar unica forma farmaceutica
+// router.get("/farmaceuticas", ListarParametroController.listarFormasParametros); // Listar farmaceuticas com parâmetros de pesquisa
 
 // Routes para farmácias
 router.get("/farmacias", FarmaciasController.listarFarmacias); // Listar farmácias
@@ -61,38 +59,34 @@ router.delete("/farmacias/:farm_id", FarmaciasController.apagarFarmacias); // Ap
 //router.get('/farmacias/:farm_id', FarmaciasController.listarUnicaFarmacia); // listar unica farmacia
 router.get("/farmacias/:farm_id", ListarUnicoController.listarUnicaFarmacia); // listar unica farmacia
 
-// Routes para funcionarios
-router.get("/funcionario", FuncionariosController.listarFuncionario); // Listar funcionarios
-router.post("/funcionario", FuncionariosController.cadastrarFuncionario); // Cadastrar funcionarios
-router.patch("/funcionario/:func_id", FuncionariosController.editarFuncionario); // Editar funcionarios
-router.delete(
-  "/funcionario/:func_id",
-  FuncionariosController.apagarFuncionario
-); // Apagar funcionarios
-//router.get('/funcionario/:func_id', FuncionariosController.listarUnicoFuncionario); // listar unico funcionario
-router.get(
-  "/funcionario/:func_id",
-  ListarUnicoController.listarUnicoFuncionario
-); // listar unico funcionario
+// // Routes para funcionarios
+// router.get("/funcionario", FuncionariosController.listarFuncionario); // Listar funcionarios
+// router.post("/funcionario", FuncionariosController.cadastrarFuncionario); // Cadastrar funcionarios
+// router.patch("/funcionario/:func_id", FuncionariosController.editarFuncionario); // Editar funcionarios
+// router.delete(
+//   "/funcionario/:func_id",
+//   FuncionariosController.apagarFuncionario
+// ); // Apagar funcionarios
+// //router.get('/funcionario/:func_id', FuncionariosController.listarUnicoFuncionario); // listar unico funcionario
+// router.get(
+//   "/funcionario/:func_id",
+//   ListarUnicoController.listarUnicoFuncionario
+// ); // listar unico funcionario
 
-// Routes para laboratorio
-router.get("/laboratorio", LaboratorioController.listarLaboratorio); // Listar laboratorio
-router.post("/laboratorio", LaboratorioController.cadastrarLaboratorio); // Cadastrar laboratorio
-router.patch("/laboratorio/:lab_id", LaboratorioController.editarLaboratorio); // Editar laboratorio
-router.delete("/laboratorio/:lab_id", LaboratorioController.apagarLaboratorio); // Apagar laboratorio
-//router.get('/laboratorio/:lab_id', LaboratorioController.listarUnicoLaboratorio); // listar unico laboratorio
-router.get(
-  "/laboratorio/:lab_id",
-  ListarUnicoController.listarUnicoLaboratorio
-); // listar unico laboratorio
+// // Routes para laboratorio
+// router.get("/laboratorio", LaboratorioController.listarLaboratorio); // Listar laboratorio
+// router.post("/laboratorio", LaboratorioController.cadastrarLaboratorio); // Cadastrar laboratorio
+// router.patch("/laboratorio/:lab_id", LaboratorioController.editarLaboratorio); // Editar laboratorio
+// router.delete("/laboratorio/:lab_id", LaboratorioController.apagarLaboratorio); // Apagar laboratorio
+// //router.get('/laboratorio/:lab_id', LaboratorioController.listarUnicoLaboratorio); // listar unico laboratorio
+// router.get(
+//   "/laboratorio/:lab_id",
+//   ListarUnicoController.listarUnicoLaboratorio
+// ); // listar unico laboratorio
 
 // Routes para medicamentos
-//router.get('/medicamentos', MedicamentosController.listarMedicamentos); // Listar medicamentos
-router.post(
-  "/produtos",
-  upload.single("img"),
-  MedicamentosController.cadastrarMedicamentos
-); // Cadastrar medicamentos
+router.get('/medicamentos', MedicamentosController.listarMedicamentos); // Listar medicamentos
+// Cadastrar medicamentos
 router.patch(
   "/medicamentos/:med_id",
   MedicamentosController.editarMedicamentos
@@ -143,13 +137,13 @@ router.get(
   ListarUnicoController.listarUnicoTipoProduto
 ); // listar unico tipo de produto
 
-// Routes para usuario
-router.get("/usuarios", UsuarioController.listarUsuario); // Listar usuarios
-router.post("/usuarios", UsuarioController.cadastrarUsuario); // Cadastrar usuarios
-router.patch("/usuarios/:usu_id", UsuarioController.editarUsuario); // Editar usuarios
-router.delete("/usuarios/:usu_id", UsuarioController.apagarUsuario); // Apagar usuarios
-//router.get('/usuarios/:usu_id', UsuarioController.listarUnicoUsuario); // listar unico usuario
-router.get("/usuarios/:usu_id", ListarUnicoController.listarUnicoUsuario); // listar unico usuario
-router.post("/usuarios/login", UsuarioController.login); // login usuario
+// // Routes para usuario
+// router.get("/usuarios", UsuarioController.listarUsuario); // Listar usuarios
+// router.post("/usuarios", UsuarioController.cadastrarUsuario); // Cadastrar usuarios
+// router.patch("/usuarios/:usu_id", UsuarioController.editarUsuario); // Editar usuarios
+// router.delete("/usuarios/:usu_id", UsuarioController.apagarUsuario); // Apagar usuarios
+// //router.get('/usuarios/:usu_id', UsuarioController.listarUnicoUsuario); // listar unico usuario
+// router.get("/usuarios/:usu_id", ListarUnicoController.listarUnicoUsuario); // listar unico usuario
+// router.post("/usuarios/login", UsuarioController.login); // login usuario
 
 module.exports = router;
