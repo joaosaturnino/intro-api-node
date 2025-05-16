@@ -84,7 +84,7 @@ module.exports = {
       });
     }
   },
-  
+  //teste
   // Apagar um usuário existente
   async apagarUsuario(request, response) {
     try {
