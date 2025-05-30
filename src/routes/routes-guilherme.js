@@ -7,6 +7,7 @@ const LaboratorioController = require("../controllers/laboratorio");
 
 // Routes para avaliacao
 router.get("/avaliacao", AvaliacaoController.listarAvaliacao); // Listar avaliacao
+router.get("/avaliacao", AvaliacaoController.listarAvaliacaoParametro); // Listar avaliacao por parametro
 router.post("/avaliacao", AvaliacaoController.cadastrarAvaliacao); // Cadastrar avaliacao
 router.patch("/avaliacao", AvaliacaoController.editarAvaliacao); // Editar avaliacao
 router.delete("/avaliacao", AvaliacaoController.apagarAvaliacao); // Apagar avaliacao
@@ -14,6 +15,7 @@ router.delete("/avaliacao", AvaliacaoController.apagarAvaliacao); // Apagar aval
 // Routes para laboratorio
 router.get("/laboratorio", LaboratorioController.listarLaboratorio); // Listar laboratorio
 router.post("/laboratorio", LaboratorioController.cadastrarLaboratorio); // Cadastrar laboratorio
+router.get("/laboratorio", LaboratorioController.listarLaboratorioParametro); // Listar laboratorio por parametro
 router.patch("/laboratorio", LaboratorioController.editarLaboratorio); // Editar laboratorio
 router.delete("/laboratorio", LaboratorioController.apagarLaboratorio); // Apagar laboratorio
 

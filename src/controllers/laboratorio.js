@@ -124,6 +124,33 @@ module.exports = {
     }
   },
 
+  async listarLaboratorioParametro(request, response) {
+    try {
+      const{ nome_laboratorio } = request.query;
+      const labPesq = nome_laboratorio ? `%${nome_laboratorio}%` : `%`;
+      const sql = 'SELECT lab_id, nome_laboratorio , lab_cnpj FROM avaliacao WHERE far_id = ?;';
+      const values = [labPesq];
+
+      const [rows] = await db.query(sql, values);
+      const laboratorio = await db.query(sql, values);
+      const nItens = laboratorio[0].length;
+
+      return response.status(200).json({
+        sucesso: true,
+        mensagem: 'Lista de laboratorio',
+        itens: nItens,
+        dados: rows
+      });
+    }
+    catch (error) {
+      return response.status(500).json({
+        sucesso: false,
+        mensagem: 'Erro na requisição.',
+        dados: error.mensage
+      });
+    }
+  },
+
   // // listar laboratorio específico
   // async listarUnicoLaboratorio(request, response) {
   //   try {

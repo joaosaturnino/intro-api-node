@@ -115,6 +115,33 @@ module.exports = {
     }
   },
 
+  async listarAvaliacaoParametro(request, response) {
+    try {
+      const{ ava_id } = request.query;
+      const avaPesq = ava_id ? `%${ava_id}%` : `%`;
+      const sql = 'SELECT ava_id, usu_id, far_id, nota, ava_comentario FROM avaliacao WHERE ava_id = ?;';
+      const values = [avaPesq];
+
+      const [rows] = await db.query(sql, values);
+      const avaliacao = await db.query(sql, values);
+      const nItens =  avaliacao[0].length;
+
+      return response.status(200).json({
+        sucesso: true,
+        mensagem: 'Lista de avaliação',
+        itens: nItens,
+        dados: rows
+      });
+    }
+    catch (error) {
+      return response.status(500).json({
+        sucesso: false,
+        mensagem: 'Erro na requisição.',
+        dados: error.mensage
+      });
+    }
+  },
+
    //teste
 
   // listar avaliacao especifica
