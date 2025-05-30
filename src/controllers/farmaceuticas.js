@@ -115,6 +115,18 @@ module.exports = {
     }
   }, 
 
+  async listarFarmaceuticaParametro (request, response) {
+      try {
+          const {forma_nome} = request.query;
+
+          const formaPesq = forma_nome ? `%${forma_nome}%` : `%`;
+          const sql = `
+              SELECT
+                  forma_id, forma_nome from forma_farmaceutica`;
+          const values = [formaPesq]
+      }
+  }
+
   //teste
 
   // // listar uma forma farmaceutica especifica
