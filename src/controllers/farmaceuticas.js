@@ -115,17 +115,32 @@ module.exports = {
     }
   }, 
 
-  async listarFarmaceuticaParametro (request, response) {
-      try {
-          const {forma_nome} = request.query;
+  async listarFormasParametros(request, response) {
+    try {
+      const { forma_nome } = request.body;
+      const formaPesq = forma_nome ? `%${forma_nome}%` : `%%`;
+      const sql = 'SELECT forma_nome FROM forma_farmaceutica WHERE forma_nome like ?;';
+      const values = [formaPesq];
+      const [rows] = await db.query(sql, values);
+      const formas = await db.query(sql, values)
+      const nItens = formas[0].length;
 
-          const formaPesq = forma_nome ? `%${forma_nome}%` : `%`;
-          const sql = `
-              SELECT
-                  forma_id, forma_nome from forma_farmaceutica`;
-          const values = [formaPesq]
-      }
-  }
+      return response.status(200).json({
+        sucesso: true,
+        mensagem: 'Listagem de medicamentos',
+        itens: rows.length,
+        dados: rows,
+        nItens
+      });
+    }
+    catch (error) {
+      return response.status(500).json({
+        sucesso: false,
+        mensagem: 'Erro de requisição',
+        dados: error.mensage
+      });
+    }
+  },
 
   //teste
 

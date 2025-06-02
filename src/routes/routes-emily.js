@@ -14,6 +14,8 @@ router.patch(
   FarmaceuticasController.editarFarmaceutica
 ); // Editar farmaceuticas
 router.delete("/farmaceutica", FarmaceuticasController.apagarFarmaceutica); // Apagar farmaceuticas
+router.get("/farmaceuticas", FarmaceuticasController.listarFormasParametros);
+
 
 // Routes para funcionarios
 router.get("/funcionario", FuncionariosController.listarFuncionario); // Listar funcionarios
