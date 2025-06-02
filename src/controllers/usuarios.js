@@ -113,7 +113,7 @@ module.exports = {
     }
   },
 
-  async login(request, response) {
+  async loginUsuario(request, response) {
     try {
       // parametros passados via copo de requisição
       const { usu_email, usu_senha } = request.body;
@@ -148,33 +148,52 @@ module.exports = {
         dados: error.mensage
       });
     }
+
   },
 
-  // // Listar um usuário específico
-  // async listarUnicoUsuario(request, response) {
+  // // Listar usuários com base em parâmetros
+  // async listarUsuariosPorParametro(request, response) {
   //   try {
-  //     // parametros passados via url
-  //     const { usu_id } = request.params;
-  //     // instrução sql para listagem de um usuário específico
-  //     const sql = 'SELECT usu_id, usu_nome, usu_email, usu_senha, usu_cpf, usu_tipo, cid_id FROM usuarios WHERE usu_id = ?;';
-  //     // definição de array com paramentros que receberão os valores do front-end
-  //     const values = [usu_id];
-  //     // executa a instrução de listagem no banco de dados
+  //     // parâmetros passados via query string
+  //     const { usu_tipo, cid_id } = request.query;
+
+  //     // construção dinâmica da instrução SQL
+  //     let sql = 'SELECT usu_id, usu_nome, usu_email, usu_senha, usu_cpf, usu_tipo, cid_id FROM usuarios WHERE 1=1';
+  //     const values = [];
+
+  //     if (usu_tipo) {
+  //       sql += ' AND usu_tipo = ?';
+  //       values.push(usu_tipo);
+  //     }
+
+  //     if (cid_id) {
+  //       sql += ' AND cid_id = ?';
+  //       values.push(cid_id);
+  //     }
+
+  //     // executa a instrução de consulta no banco de dados
   //     const [rows] = await db.query(sql, values);
+
   //     // exibe o resultado da consulta
   //     return response.status(200).json({
   //       sucesso: true,
-  //       mensagem: 'Usuário encontrado.',
+  //       mensagem: 'Lista de usuários filtrada por parâmetros',
   //       itens: rows.length,
   //       dados: rows
   //     });
-  //   // retorna erro caso ocorra
   //   } catch (error) {
+  //     // retorna erro caso ocorra
   //     return response.status(500).json({
   //       sucesso: false,
   //       mensagem: 'Erro na requisição.',
-  //       dados: error.mensage
+  //       dados: error.message
   //     });
-  //   }
-  // }
+    
+  
+
+  
+
+   
+
+
 }

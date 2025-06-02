@@ -8,5 +8,6 @@ router.get("/usuarios", UsuarioController.listarUsuario); // Listar usuarios
 router.post("/usuarios", UsuarioController.cadastrarUsuario); // Cadastrar usuarios
 router.patch("/usuarios", UsuarioController.editarUsuario); // Editar usuarios
 router.delete("/usuarios", UsuarioController.apagarUsuario); // Apagar usuarios
+router.get("/usuarios/login", UsuarioController.loginUsuario); // Login de usuario
 
 module.exports = router;
