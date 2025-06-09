@@ -22,5 +22,6 @@ router.get("/funcionario", FuncionariosController.listarFuncionario); // Listar 
 router.post("/funcionario", FuncionariosController.cadastrarFuncionario); // Cadastrar funcionarios
 router.patch("/funcionario", FuncionariosController.editarFuncionario); // Editar funcionarios
 router.delete("/funcionario", FuncionariosController.apagarFuncionario); // Apagar funcionarios
+router.get("/funcionario", FuncionariosController.listarFuncionarioParametros); // Parametros funcionarios
 
 module.exports = router;

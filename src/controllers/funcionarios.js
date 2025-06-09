@@ -115,6 +115,33 @@ module.exports = {
     }
   },
 
+  async listarFuncionarioParametros(request, response) {
+    try {
+      const { func_id } = request.params;
+      const formaPesq = func_id ? `%${func_id}%` : `%%`;
+      const sql = 'SELECT func_id FROM funcionarios WHERE func_id like ?;';
+      const values = [formaPesq];
+      const [rows] = await db.query(sql, values);
+      const formas = await db.query(sql, values)
+      const nItens = formas[0].length;
+
+      return response.status(200).json({
+        sucesso: true,
+        mensagem: 'Listagem de funcionarios',
+        itens: rows.length,
+        dados: rows,
+        nItens
+      });
+    }
+    catch (error) {
+      return response.status(500).json({
+        sucesso: false,
+        mensagem: 'Erro de requisição',
+        dados: error.mensage
+      });
+    }
+  },
+
   // // listar funcionario especifico
   // async listarUnicoFuncionario(request, response) {
   //   try {

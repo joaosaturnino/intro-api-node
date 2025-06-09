@@ -106,5 +106,36 @@ module.exports = {
     }
   },
 
-  
+  async listarFuncionariosParametros(request, response) {
+    try {
+      const { func_id } = request.params;
+      const formaPesq = func_id ? `%${func_id}%` : `%%`;
+      // instrução sql para listar funcionario
+      const sql = 'SELECT func_id, FROM forma_funcionario WHERE func_id like ?;';
+
+      const values = [formaPesq];
+      // executa a instrução de listagem no banco de dados
+      const [rows] = await db.query(sql, values);
+      const formas = await db.query(sql, values);
+      const nItens = formas[0].length;
+
+      // chamada para montar a url da imagem
+      //const resultado = funcionarios[0].map(geraUrl);
+      // exibe o resultado da consulta
+      return response.status(200).json({
+        sucesso: true,
+        mensagem: 'Lista de funcionario',
+        itens: rows.length,
+        dados: rows, //funcionario[0], // ,e funcionarios, //, resultado
+        nItens
+      });
+      // retorna erro caso ocorra
+    }catch (error) {
+      return response.status(500).json({
+        sucesso: false,
+        mensagem: 'Erro na requisição.',
+        dados: error.mensage
+      });
+    }
+  },
 }
