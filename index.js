@@ -15,7 +15,7 @@ const porta = process.env.PORT || 3333;
 // const port = 3333; // Porta padrão para o servidor
 
 app.listen(porta, () => {
-  console.log(`Servidor iniciado em http://localhost:${porta}`);
+  console.log(`Servidor iniciado na porta ${"192.168.56.1"}`);
 });
 
 app.get("/", (request, response) => {

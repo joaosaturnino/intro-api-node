@@ -19,7 +19,7 @@ function geraUrl(e) {
     forma_id: e.forma_id,
     descricao: e.descricao,
     lab_id: e.lab_id,
-    med_img: "http://192.168.158.164:3333/upload/medicamentos/" + img, //+ img,
+    med_img: "http://192.168.56.1:3333/upload/medicamentos/" + img, //+ img,
     tipo_id: e.tipo_id,
   };
   return medicamento;
