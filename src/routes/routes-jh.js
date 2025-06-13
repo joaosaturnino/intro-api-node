@@ -7,7 +7,7 @@ const CidadesController = require("../controllers/cidades");
 
 const FarmaciasController = require("../controllers/farmacias");
 
-const uploadImageMedicamentos = require("../middlewares/uploadImageMedicamentos");
+// const uploadImageMedicamentos = require("../middlewares/uploadImageMedicamentos");
 
 const MedicamentosController = require("../controllers/medicamentos");
 const MedPrecoController = require("../controllers/medpreco");
@@ -57,11 +57,11 @@ router.get(
   ListarParametroController.listarMedicamentosParametros
 ); // Listar medicamentos com parâmetros de pesquisa
 router.get("/medicamento/inner", ListarInnerController.listarMedicamentoInner); // Listar medicamentos com inner join
-router.post(
-  "/medicamentosimg",
-  uploadImageMedicamentos.single("img"),
-  MedicamentosController.cadastrarMedicamentos
-);
+// router.post(
+//   "/medicamentosimg",
+//   uploadImageMedicamentos.single("img"),
+//   MedicamentosController.cadastrarMedicamentos
+// );
 
 // Routes para precos medicamentos
 router.get("/medpreco", MedPrecoController.listarMedPreco); // Listar precos medicamentos
