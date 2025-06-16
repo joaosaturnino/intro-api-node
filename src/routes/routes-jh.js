@@ -57,11 +57,7 @@ router.get(
   ListarParametroController.listarMedicamentosParametros
 ); // Listar medicamentos com parâmetros de pesquisa
 router.get("/medicamento/inner", ListarInnerController.listarMedicamentoInner); // Listar medicamentos com inner join
-// router.post(
-//   "/medicamentosimg",
-//   uploadImageMedicamentos.single("img"),
-//   MedicamentosController.cadastrarMedicamentos
-// );
+//
 
 // Routes para precos medicamentos
 router.get("/medpreco", MedPrecoController.listarMedPreco); // Listar precos medicamentos
