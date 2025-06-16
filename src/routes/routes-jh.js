@@ -7,6 +7,8 @@ const CidadesController = require("../controllers/cidades");
 
 const FarmaciasController = require("../controllers/farmacias");
 
+const uploadImagefarmacias = require("../../middlewares/uploadImageFarmacias");
+
 // const uploadImageMedicamentos = require("../middlewares/uploadImageMedicamentos");
 
 const MedicamentosController = require("../controllers/medicamentos");
