@@ -32,11 +32,16 @@ router.get("/cidade/cidadelimit", ListarUnicoController.listarLimiteCidade); // 
 
 // Routes para farmácias
 router.get("/farmacias", FarmaciasController.listarFarmacias); // Listar farmácias
-router.post("/farmacias", FarmaciasController.cadastrarFarmacias); // Cadastrar farmácias
+// router.post("/farmacias", FarmaciasController.cadastrarFarmacias); // Cadastrar farmácias
 router.patch("/farmacias/:farm_id", FarmaciasController.editarFarmacias); // Editar farmácias
 router.delete("/farmacias/:farm_id", FarmaciasController.apagarFarmacias); // Apagar farmácias
 //router.get('/farmacias/:farm_id', FarmaciasController.listarUnicaFarmacia); // listar unica farmacia
 router.get("/farmacias/:farm_id", ListarUnicoController.listarUnicaFarmacia); // listar unica farmacia
+router.post(
+  "/produtos",
+  uploadImagefarmacias.single("img"),
+  FarmaciasController.cadastrarFarmacias
+);
 
 // Routes para medicamentos
 router.get("/medicamentos", MedicamentosController.listarMedicamentos); // Listar medicamentos
