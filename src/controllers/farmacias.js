@@ -29,6 +29,8 @@ module.exports = {
   async cadastrarFarmacias(request, response) {
     try {
       const sql = 'SELECT farm_id, farm_nome, farm_endereco, farm_telefone, farm_email, farm_senha, cnpj, farm_logo FROM farmacia WHERE farm_id = ?;';
+
+      const values = []
     }
   }
 }
